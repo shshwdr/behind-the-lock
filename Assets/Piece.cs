@@ -12,6 +12,9 @@ public class Piece : MonoBehaviour
     [HideInInspector]
     public List<Vector2> innerPoints;
     float innerEpsilon = 0.1f;
+    DragRotation dragRotation;
+
+    float originRotation;
     void generateInnerPoints()
     {
         Vector2 certerPoint = Vector2.zero;
@@ -19,38 +22,44 @@ public class Piece : MonoBehaviour
         {
             certerPoint += targetPoint;
         }
-        Debug.Log("total point count "+ collider.points.Length);
+        //Debug.Log("total point count "+ collider.points.Length);
         certerPoint /= (float)collider.points.Length;
 
-        Debug.Log("center " + certerPoint);
+        //Debug.Log("center " + certerPoint);
         foreach (Vector2 targetPoint in collider.points)
         {
             Vector2 diff = certerPoint - targetPoint;
             Vector2 diffNormalize = diff * innerEpsilon;
             Vector2 innerPoint = targetPoint + diffNormalize;
 
-            Debug.Log("diff " + diff+" "+ diffNormalize);
+            //Debug.Log("diff " + diff+" "+ diffNormalize);
             innerPoints.Add(innerPoint);
         }
-        Debug.Log("collider points = " + String.Join("",
-            new List<Vector2>(collider.points)
-            .ConvertAll(i => i.ToString())
-            .ToArray()));
-        Debug.Log("inner points = " + String.Join("",
-            innerPoints
-            .ConvertAll(i => i.ToString())
-            .ToArray()));
+        //Debug.Log("collider points = " + String.Join("",
+        //    new List<Vector2>(collider.points)
+        //    .ConvertAll(i => i.ToString())
+        //    .ToArray()));
+        //Debug.Log("inner points = " + String.Join("",
+        //    innerPoints
+        //    .ConvertAll(i => i.ToString())
+        //    .ToArray()));
     }
 
     private void Start()
     {
         collider = GetComponent<PolygonCollider2D>();
         generateInnerPoints();
+        dragRotation = GetComponent<DragRotation>();
     }
 
     public void OnMouseDown()
     {
         isDragging = true;
+        originRotation = transform.eulerAngles.z;
+        if (dragRotation)
+        {
+            GlobalValue.Instance.SelectPiece(dragRotation);
+        }
     }
 
     public void OnMouseUp()
@@ -64,6 +73,7 @@ public class Piece : MonoBehaviour
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 closestPoint = Vector2.negativeInfinity;
+            Vector2 snapToPoint = Vector2.zero;
             float distance = float.PositiveInfinity;
             Vector2 moveDis = Vector2.zero;
             foreach (Vector2 colliderPoint in collider.points)
@@ -79,6 +89,7 @@ public class Piece : MonoBehaviour
                         {
                             distance = tempDistance;
                             closestPoint = tempClosestPoint - colliderPoint;
+                            snapToPoint = tempClosestPoint;
                             moveDis = tempClosestPoint - colliderPointPosition;
                         }
                     }
@@ -90,32 +101,55 @@ public class Piece : MonoBehaviour
 
                 //check if all inner points is inside of target
                 bool allIn = true;
-                foreach (Vector2 innerPoint in innerPoints)
+                float selectedRotation = 0;
+                float[] rotateDegrees = {0, 45, -45, 90, -90 };
+                foreach (float rotateDegree in rotateDegrees)
                 {
-                    Vector2 innerPointInTargetSpace = innerPoint + mousePosition + moveDis;// + (Vector2)targetCollider.transform.position;
-                    if (!targetCollider.OverlapPoint(innerPointInTargetSpace))
+                    allIn = true;
+                    foreach (Vector2 innerPoint in innerPoints)
                     {
-                        allIn = false;
-                        break;
-                    }
-                    else
-                    {
+                        Vector2 innerPointInTargetSpace = innerPoint + mousePosition + moveDis;// + (Vector2)targetCollider.transform.position;
+                        Vector2 pivot = snapToPoint;
 
+                        Vector2 dir = innerPointInTargetSpace - pivot;
+                        dir = Quaternion.Euler(new Vector3(0,0,rotateDegree)) * dir;
+                        Vector2 innerPointAfterRotation = dir+ pivot;
+                        if (!targetCollider.OverlapPoint(innerPointAfterRotation))
+                        {
+                            allIn = false;
+                            break;
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    if (allIn)
+                    {
+                        selectedRotation = rotateDegree;
+                        break;
                     }
                 }
                 if (allIn)
                 {
-
-                    //if not, rotate
+                    Vector2 pivot = snapToPoint;
+                    Vector2 dir = closestPoint - pivot;
+                    dir = Quaternion.Euler(new Vector3(0, 0, selectedRotation)) * dir;
+                    closestPoint = dir + pivot;
                     transform.position = closestPoint;
+                    transform.eulerAngles = new Vector3(0,0,selectedRotation);
                     return;
+                }
+                else
+                {
                 }
 
             }
             transform.position = mousePosition;
+            transform.eulerAngles = new Vector3(0, 0, originRotation);
 
             //Debug.Log(closestPoint+" "+ mousePosition+" "+ (closestPoint - mousePosition).SqrMagnitude());
-            
+
         }
     }
 }
