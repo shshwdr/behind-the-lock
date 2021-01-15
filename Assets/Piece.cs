@@ -68,83 +68,105 @@ public class Piece : MonoBehaviour
         isDragging = false;
     }
 
+    Vector2 rotateAroundVector(Vector2 originPosition,Vector2 pivot,float degree)
+    {
+        Vector2 dir = originPosition - pivot;
+        dir = Quaternion.Euler(new Vector3(0, 0, degree)) * dir;
+        Vector2 res = dir + pivot;
+        return res;
+    }
+
     void Update()
     {
         if (isDragging)
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 closestPoint = Vector2.negativeInfinity;
-            Vector2 snapToPoint = Vector2.zero;
-            float distance = float.PositiveInfinity;
+            Vector2 snapToPoint = Vector2.zero;//the point on target that will snap to
+            float distance = float.PositiveInfinity;//closest distance from any point on piece to target points
             Vector2 moveDis = Vector2.zero;
-            foreach (Vector2 colliderPoint in collider.points)
+            //for each rotation, check for each collider point, if it is close to a target point
+
+            float selectedRotation = 0;
+            float[] rotateDegrees = { 0, 45, -45, 90, -90 ,135,-135,180};
+            foreach (float rotateDegree in rotateDegrees)
             {
-                Vector2 colliderPointPosition = colliderPoint + mousePosition;
-                foreach (Vector2 targetPoint in targetCollider.points)
+
+                bool allIn = true;
+                float testRotateDegree = rotateDegree;
+                foreach (Vector2 colliderPoint in collider.points)
                 {
-                    Vector2 tempClosestPoint = targetPoint + (Vector2)targetCollider.transform.position;
-                    float tempDistance = (tempClosestPoint - colliderPointPosition).SqrMagnitude();
-                    if (tempDistance <= snapDistance)
+                    //rotate collider point
+                    Vector2 colliderPointAfterRotation = rotateAroundVector(colliderPoint, Vector2.zero, testRotateDegree);
+                    Vector2 colliderPointPosition = colliderPointAfterRotation + mousePosition;
+                    foreach (Vector2 targetPoint in targetCollider.points)
                     {
-                        if (tempDistance < distance)
+                        Vector2 tempClosestPoint = targetPoint + (Vector2)targetCollider.transform.position;
+                        float tempDistance = (tempClosestPoint - colliderPointPosition).SqrMagnitude();
+                        if (tempDistance <= snapDistance)
                         {
-                            distance = tempDistance;
-                            closestPoint = tempClosestPoint - colliderPoint;
-                            snapToPoint = tempClosestPoint;
-                            moveDis = tempClosestPoint - colliderPointPosition;
+                            if (tempDistance < distance)
+                            {
+                                distance = tempDistance;
+                                closestPoint = tempClosestPoint - colliderPointAfterRotation;
+                                snapToPoint = tempClosestPoint;
+                                moveDis = tempClosestPoint - colliderPointPosition;
+                            }
                         }
                     }
                 }
-            }
 
-            if(distance< float.PositiveInfinity)
-            {
-
-                //check if all inner points is inside of target
-                bool allIn = true;
-                float selectedRotation = 0;
-                float[] rotateDegrees = {0, 45, -45, 90, -90 };
-                foreach (float rotateDegree in rotateDegrees)
+                if (distance < float.PositiveInfinity)
                 {
-                    allIn = true;
-                    foreach (Vector2 innerPoint in innerPoints)
-                    {
-                        Vector2 innerPointInTargetSpace = innerPoint + mousePosition + moveDis;// + (Vector2)targetCollider.transform.position;
-                        Vector2 pivot = snapToPoint;
 
-                        Vector2 dir = innerPointInTargetSpace - pivot;
-                        dir = Quaternion.Euler(new Vector3(0,0,rotateDegree)) * dir;
-                        Vector2 innerPointAfterRotation = dir+ pivot;
-                        if (!targetCollider.OverlapPoint(innerPointAfterRotation))
+                    //check if all inner points is inside of target
+                    //foreach (float rotateDegree in rotateDegrees)
+                    //{
+                        float newRotateDegree = 0 + 0;
+                        allIn = true;
+                        foreach (Vector2 innerPoint in innerPoints)
                         {
-                            allIn = false;
-                            break;
-                        }
-                        else
-                        {
+                        Vector2 innerPointAfterRotation = rotateAroundVector(innerPoint, Vector2.zero, testRotateDegree);
+                        Vector2 innerPointInTargetSpace = innerPointAfterRotation + mousePosition + moveDis;// + (Vector2)targetCollider.transform.position;
+                            //Vector2 pivot = snapToPoint;
 
+                            //Vector2 dir = innerPointInTargetSpace - pivot;
+                            //dir = Quaternion.Euler(new Vector3(0, 0, newRotateDegree)) * dir;
+                            //Vector2 innerPointAfterRotation = dir + pivot;
+                            if (!targetCollider.OverlapPoint(innerPointInTargetSpace))
+                            {
+                                allIn = false;
+                                break;
+                            }
                         }
-                    }
+                        if (allIn)
+                        {
+                        //selectedRotation = newRotateDegree;
+                        //Vector2 pivot = snapToPoint;
+                        //Vector2 dir = closestPoint - pivot;
+                        //dir = Quaternion.Euler(new Vector3(0, 0, selectedRotation)) * dir;
+                        //closestPoint = dir + pivot;
+                        //transform.position = closestPoint;
+                        transform.position = closestPoint;
+                        transform.eulerAngles = new Vector3(0, 0, testRotateDegree);
+                        return;
+                        }
+                    //}
                     if (allIn)
                     {
-                        selectedRotation = rotateDegree;
-                        break;
+                        //Vector2 pivot = snapToPoint;
+                        //Vector2 dir = closestPoint - pivot;
+                        //dir = Quaternion.Euler(new Vector3(0, 0, selectedRotation)) * dir;
+                        //closestPoint = dir + pivot;
+                        //transform.position = closestPoint;
+                        //transform.eulerAngles = new Vector3(0, 0, selectedRotation);
+                        return;
                     }
-                }
-                if (allIn)
-                {
-                    Vector2 pivot = snapToPoint;
-                    Vector2 dir = closestPoint - pivot;
-                    dir = Quaternion.Euler(new Vector3(0, 0, selectedRotation)) * dir;
-                    closestPoint = dir + pivot;
-                    transform.position = closestPoint;
-                    transform.eulerAngles = new Vector3(0,0,selectedRotation);
-                    return;
-                }
-                else
-                {
-                }
+                    else
+                    {
+                    }
 
+                }
             }
             transform.position = mousePosition;
             transform.eulerAngles = new Vector3(0, 0, originRotation);
