@@ -11,40 +11,62 @@ public class DragRotation : MonoBehaviour
     float currentRotation;
     public bool isSelected = false;
 
+    public GameObject rotateArrow;
     void Start()
     {
-       // Screen.showCursor = false;
+        //rotateArrow.SetActive(false);
     }
-
-    void Update()
+    public void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            deltaRotation = 0f;
-            previousRotation = angleBetweenPoints(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            currentRotation = angleBetweenPoints(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            deltaRotation = Mathf.DeltaAngle(currentRotation, previousRotation);
-            if (Mathf.Abs(deltaRotation) > deltaLimit)
-            {
-                deltaRotation = deltaLimit * Mathf.Sign(deltaRotation);
-            }
-            previousRotation = currentRotation;
-            transform.Rotate(Vector3.back * Time.deltaTime, deltaRotation);
-        }
-        else if(Input.GetMouseButtonUp(0))
-        {
-            SnapAfterRotation();
-        }
+        deltaRotation = 0f;
+        previousRotation = angleBetweenPoints(transform.parent.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
     }
+    private void OnMouseDrag()
+    {
+        currentRotation = angleBetweenPoints(transform.parent.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        deltaRotation = Mathf.DeltaAngle(currentRotation, previousRotation);
+        if (Mathf.Abs(deltaRotation) > deltaLimit)
+        {
+            deltaRotation = deltaLimit * Mathf.Sign(deltaRotation);
+        }
+        previousRotation = currentRotation;
+        transform.parent.transform.Rotate(Vector3.back * Time.deltaTime, deltaRotation);
+
+    }
+    private void OnMouseUp()
+    {
+        SnapAfterRotation();
+    }
+    //void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        deltaRotation = 0f;
+    //        previousRotation = angleBetweenPoints(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    //    }
+    //    else if (Input.GetMouseButton(0))
+    //    {
+    //        currentRotation = angleBetweenPoints(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    //        deltaRotation = Mathf.DeltaAngle(currentRotation, previousRotation);
+    //        if (Mathf.Abs(deltaRotation) > deltaLimit)
+    //        {
+    //            deltaRotation = deltaLimit * Mathf.Sign(deltaRotation);
+    //        }
+    //        previousRotation = currentRotation;
+    //        transform.Rotate(Vector3.back * Time.deltaTime, deltaRotation);
+    //    }
+    //    else if(Input.GetMouseButtonUp(0))
+    //    {
+    //        SnapAfterRotation();
+    //    }
+
+    //}
 
     void SnapAfterRotation()
     {
-        float rot = Mathf.Round((transform.eulerAngles.z) / 45) * 45;
-        transform.eulerAngles = new Vector3(0, 0, rot);
+        float rot = Mathf.Round((transform.parent.transform.eulerAngles.z) / 45) * 45;
+        transform.parent.transform.eulerAngles = new Vector3(0, 0, rot);
     }
 
 

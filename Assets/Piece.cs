@@ -12,7 +12,7 @@ public class Piece : MonoBehaviour
     [HideInInspector]
     public List<Vector2> innerPoints;
     float innerEpsilon = 0.1f;
-    DragRotation dragRotation;
+    public DragRotation dragRotation;
 
     float originRotation;
     void generateInnerPoints()
@@ -49,7 +49,6 @@ public class Piece : MonoBehaviour
     {
         collider = GetComponent<PolygonCollider2D>();
         generateInnerPoints();
-        dragRotation = GetComponent<DragRotation>();
     }
 
     public void OnMouseDown()
@@ -58,12 +57,14 @@ public class Piece : MonoBehaviour
         originRotation = transform.eulerAngles.z;
         if (dragRotation)
         {
-            GlobalValue.Instance.SelectPiece(dragRotation);
+            GlobalValue.Instance.UnselectCurrentPiece();
         }
     }
 
     public void OnMouseUp()
     {
+
+        GlobalValue.Instance.SelectPiece(dragRotation);
         isDragging = false;
     }
 
