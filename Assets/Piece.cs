@@ -167,6 +167,7 @@ public class Piece : MonoBehaviour
                         transform.position = closestPoint;
                         transform.eulerAngles = new Vector3(0, 0, testRotateDegree);
                         isLocked = true;
+                        GlobalValue.Instance.CheckWin();
                         return;
                     }
 

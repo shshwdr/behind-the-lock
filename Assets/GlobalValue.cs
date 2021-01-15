@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,42 @@ public class GlobalValue : Singleton<GlobalValue>
             lastSelected.gameObject.SetActive(false);
         }
     }
+    public void CheckWin()
+    {
+        bool isWin = true;
+        List<bool> res = new List<bool>();
+        foreach(Piece piece in pieces)
+        {
+            if (!piece.isLocked)
+            {
+                res.Add(false);
+                isWin = false;
+
+                //return;
+            }
+            else
+            {
+                res.Add(true);
+            }
+        }
+        Debug.Log("collider points = " + String.Join("",
+            res
+            .ConvertAll(i => i.ToString())
+            .ToArray()));
+        if (isWin)
+        {
+
+            Debug.Log("WIN");
+        }
+    }
+
+    //static void LogList(List<T>)
+    //{
+    //    Debug.Log("collider points = " + String.Join("",
+    //        new List<Vector2>(collider.points)
+    //        .ConvertAll(i => i.ToString())
+    //        .ToArray()));
+    //}
     public void SelectPiece(DragRotation selected)
     {
         UnselectCurrentPiece();
