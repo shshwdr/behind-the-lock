@@ -5,6 +5,7 @@ using UnityEngine;
 public class GlobalValue : Singleton<GlobalValue>
 {
     public DragRotation lastSelected;
+    public List<Piece> pieces;
     public void UnselectCurrentPiece()
     {
 

@@ -13,7 +13,9 @@ public class Piece : MonoBehaviour
     public List<Vector2> innerPoints;
     float innerEpsilon = 0.1f;
     public DragRotation dragRotation;
-
+    public bool isLocked = false;
+    int originOrder;
+    SpriteRenderer spriteRenderer;
     float originRotation;
     void generateInnerPoints()
     {
@@ -49,10 +51,14 @@ public class Piece : MonoBehaviour
     {
         collider = GetComponent<PolygonCollider2D>();
         generateInnerPoints();
+        GlobalValue.Instance.pieces.Add(this);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originOrder = spriteRenderer.sortingOrder;
     }
 
     public void OnMouseDown()
     {
+        spriteRenderer.sortingOrder = originOrder + 1;
         isDragging = true;
         originRotation = transform.eulerAngles.z;
         if (dragRotation)
@@ -63,12 +69,12 @@ public class Piece : MonoBehaviour
 
     public void OnMouseUp()
     {
-
+        spriteRenderer.sortingOrder = originOrder;
         GlobalValue.Instance.SelectPiece(dragRotation);
         isDragging = false;
     }
 
-    Vector2 rotateAroundVector(Vector2 originPosition,Vector2 pivot,float degree)
+    Vector2 rotateAroundVector(Vector2 originPosition, Vector2 pivot, float degree)
     {
         Vector2 dir = originPosition - pivot;
         dir = Quaternion.Euler(new Vector3(0, 0, degree)) * dir;
@@ -87,13 +93,12 @@ public class Piece : MonoBehaviour
             Vector2 moveDis = Vector2.zero;
             //for each rotation, check for each collider point, if it is close to a target point
 
-            float selectedRotation = 0;
-            float[] rotateDegrees = { 0, 45, -45, 90, -90 ,135,-135,180};
+            float[] rotateDegrees = { 0, 45, -45, 90, -90, 135, -135, 180 };
             foreach (float rotateDegree in rotateDegrees)
             {
 
                 bool allIn = true;
-                float testRotateDegree = rotateDegree;
+                float testRotateDegree = rotateDegree + originRotation;
                 foreach (Vector2 colliderPoint in collider.points)
                 {
                     //rotate collider point
@@ -122,25 +127,37 @@ public class Piece : MonoBehaviour
                     //check if all inner points is inside of target
                     //foreach (float rotateDegree in rotateDegrees)
                     //{
-                        float newRotateDegree = 0 + 0;
-                        allIn = true;
-                        foreach (Vector2 innerPoint in innerPoints)
-                        {
+                    allIn = true;
+                    foreach (Vector2 innerPoint in innerPoints)
+                    {
                         Vector2 innerPointAfterRotation = rotateAroundVector(innerPoint, Vector2.zero, testRotateDegree);
                         Vector2 innerPointInTargetSpace = innerPointAfterRotation + mousePosition + moveDis;// + (Vector2)targetCollider.transform.position;
-                            //Vector2 pivot = snapToPoint;
+                                                                                                            //Vector2 pivot = snapToPoint;
 
-                            //Vector2 dir = innerPointInTargetSpace - pivot;
-                            //dir = Quaternion.Euler(new Vector3(0, 0, newRotateDegree)) * dir;
-                            //Vector2 innerPointAfterRotation = dir + pivot;
-                            if (!targetCollider.OverlapPoint(innerPointInTargetSpace))
+                        //Vector2 dir = innerPointInTargetSpace - pivot;
+                        //dir = Quaternion.Euler(new Vector3(0, 0, newRotateDegree)) * dir;
+                        //Vector2 innerPointAfterRotation = dir + pivot;
+                        if (!targetCollider.OverlapPoint(innerPointInTargetSpace))
+                        {
+
+                            allIn = false;
+                            break;
+                        }
+                        //check all locked piece does not overlap
+                        foreach (Piece otherPiece in GlobalValue.Instance.pieces)
+                        {
+                            if (otherPiece != this && otherPiece.isLocked)
                             {
-                                allIn = false;
-                                break;
+                                if(otherPiece.collider.OverlapPoint(innerPointInTargetSpace))
+                                {
+                                    allIn = false;
+                                    break;
+                                }
                             }
                         }
-                        if (allIn)
-                        {
+                    }
+                    if (allIn)
+                    {
                         //selectedRotation = newRotateDegree;
                         //Vector2 pivot = snapToPoint;
                         //Vector2 dir = closestPoint - pivot;
@@ -149,27 +166,15 @@ public class Piece : MonoBehaviour
                         //transform.position = closestPoint;
                         transform.position = closestPoint;
                         transform.eulerAngles = new Vector3(0, 0, testRotateDegree);
+                        isLocked = true;
                         return;
-                        }
-                    //}
-                    if (allIn)
-                    {
-                        //Vector2 pivot = snapToPoint;
-                        //Vector2 dir = closestPoint - pivot;
-                        //dir = Quaternion.Euler(new Vector3(0, 0, selectedRotation)) * dir;
-                        //closestPoint = dir + pivot;
-                        //transform.position = closestPoint;
-                        //transform.eulerAngles = new Vector3(0, 0, selectedRotation);
-                        return;
-                    }
-                    else
-                    {
                     }
 
                 }
             }
             transform.position = mousePosition;
             transform.eulerAngles = new Vector3(0, 0, originRotation);
+            isLocked = false;
 
             //Debug.Log(closestPoint+" "+ mousePosition+" "+ (closestPoint - mousePosition).SqrMagnitude());
 
