@@ -89,6 +89,7 @@ public class GlobalValue : Singleton<GlobalValue>
         GameObject newLevel = Utils.InitLevel("Level1");
 
         newLevel.GetComponent<LevelController>().StartSolvingLevel();
+        TargetGroupController.Instance.UpdateTargets(new List<LevelController>() { newLevel.GetComponent<LevelController>() });
 
         //Destroy(gameObject);
     }
