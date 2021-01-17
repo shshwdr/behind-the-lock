@@ -7,9 +7,10 @@ public class LevelController : MonoBehaviour
     public GameObject targetObject;
     public GameObject splitObjects;
     public Transform center;
-
+    public string levelName;
     public float speed;
     bool isRotating;
+
 
     private Vector3 zAxis = new Vector3(0, 0, 1);
 
@@ -20,15 +21,23 @@ public class LevelController : MonoBehaviour
         Utils.finishLevel += LevelFinished;
     }
 
-    void LevelFinished()
+    void LevelFinished(string levelName)
     {
+        string dialogueName = levelName+"Finished";
+        if (PixelCrushers.DialogueSystem.DialogueManager.ConversationHasValidEntry(dialogueName))
+        {
+           // PixelCrushers.DialogueSystem.DialogueManager.StartConversation(dialogueName);
+        }
         isRotating = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Utils.finishLevel(levelName);
+        }
     }
 
     void FixedUpdate()
@@ -44,8 +53,15 @@ public class LevelController : MonoBehaviour
                 isRotating = false;
                 //triger dialog if needed
                 //or load another level
-                GameObject newLeve  = Instantiate(Resources.Load("Levels/Level2") as GameObject);
+                GameObject newLevel  = Instantiate(Resources.Load("Levels/Level2") as GameObject);
                 Destroy(gameObject);
+                string newLevelName = newLevel.GetComponent<LevelController>().levelName;
+                //Utils.startLevel(newLevelName);
+                string dialogueName = newLevelName+"Start";
+                if (PixelCrushers.DialogueSystem.DialogueManager.ConversationHasValidEntry(dialogueName))
+                {
+                    PixelCrushers.DialogueSystem.DialogueManager.StartConversation(dialogueName);
+                }
             }
         }
     }

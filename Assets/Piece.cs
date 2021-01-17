@@ -58,6 +58,11 @@ public class Piece : MonoBehaviour
 
     public void OnMouseDown()
     {
+        if (Utils.Pause)
+        {
+            isDragging = false;
+            return;
+        }
         spriteRenderer.sortingOrder = originOrder + 1;
         isDragging = true;
         originRotation = transform.eulerAngles.z;
@@ -69,6 +74,11 @@ public class Piece : MonoBehaviour
 
     public void OnMouseUp()
     {
+        if (Utils.Pause)
+        {
+            isDragging = false;
+            return;
+        }
         spriteRenderer.sortingOrder = originOrder;
         GlobalValue.Instance.SelectPiece(dragRotation);
         isDragging = false;

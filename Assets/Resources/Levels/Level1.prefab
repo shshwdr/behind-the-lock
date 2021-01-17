@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 681217899461737504, guid: 077262b3704440247823bba2d71c9cae,
+        type: 3}
+      propertyPath: levelName
+      value: Start
+      objectReference: {fileID: 0}
     - target: {fileID: 681217899461737505, guid: 077262b3704440247823bba2d71c9cae,
         type: 3}
       propertyPath: m_RootOrder
@@ -65,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 681217899461737510, guid: 077262b3704440247823bba2d71c9cae,
         type: 3}
       propertyPath: m_Name
-      value: Level
+      value: Level1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077262b3704440247823bba2d71c9cae, type: 3}
