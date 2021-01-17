@@ -72,6 +72,11 @@ public class Piece : MonoBehaviour
         spriteRenderer.sortingOrder = originOrder;
         GlobalValue.Instance.SelectPiece(dragRotation);
         isDragging = false;
+        if (isLocked)
+        {
+
+            GlobalValue.Instance.CheckWin();
+        }
     }
 
     Vector2 rotateAroundVector(Vector2 originPosition, Vector2 pivot, float degree)
@@ -167,7 +172,6 @@ public class Piece : MonoBehaviour
                         transform.position = closestPoint;
                         transform.eulerAngles = new Vector3(0, 0, testRotateDegree);
                         isLocked = true;
-                        GlobalValue.Instance.CheckWin();
                         return;
                     }
 

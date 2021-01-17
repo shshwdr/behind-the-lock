@@ -100,6 +100,7 @@ MonoBehaviour:
   snapDistance: 1
   innerPoints: []
   dragRotation: {fileID: 4759261917637593845}
+  isLocked: 0
 --- !u!60 &629757588869280674
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -156,7 +157,7 @@ Transform:
   m_GameObject: {fileID: 8735614318885447844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 629757588869280673}
   m_RootOrder: 0
