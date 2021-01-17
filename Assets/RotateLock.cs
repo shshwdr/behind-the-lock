@@ -13,7 +13,7 @@ public class RotateLock : MonoBehaviour
     private void Start()
     {
 
-        Utils.finishLevel += Rotate;
+        //Utils.finishLevel += Rotate;
     }
 
     void Rotate()
