@@ -86,7 +86,32 @@ public class Piece : MonoBehaviour
         {
 
             GlobalValue.Instance.CheckWin();
+           StartCoroutine( CheckLockEvent());
         }
+    }
+
+    IEnumerator CheckLockEvent()
+    {
+        string currentLevelName = Utils.currentSolvingLevel.GetComponent<LevelController>().levelName;
+        int lockedCount = GlobalValue.Instance.lockedCount();
+        string dialogueName = currentLevelName + "Put"+ lockedCount;
+
+        //string dialogueHappened = currentLevelName + "Put" + lockedCount;
+        bool dialogueHappened  = PixelCrushers.DialogueSystem.DialogueLua.GetVariable(dialogueName).AsBool;
+        if (PixelCrushers.DialogueSystem.DialogueManager.ConversationHasValidEntry(dialogueName)&& !dialogueHappened)
+        {
+
+            GameObject resource = Resources.Load("Character/"+dialogueName) as GameObject;
+            if (resource!=null)
+            {
+                GameObject resourceObject = Instantiate(resource);
+                yield return StartCoroutine(resourceObject.GetComponent<Character>().WaitFinishStart());
+            }
+
+            PixelCrushers.DialogueSystem.DialogueLua.SetVariable(dialogueName,true);
+            PixelCrushers.DialogueSystem.DialogueManager.StartConversation(dialogueName);
+        }
+        yield return null;
     }
 
     Vector2 rotateAroundVector(Vector2 originPosition, Vector2 pivot, float degree)

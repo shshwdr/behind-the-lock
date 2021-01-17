@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: levelName
       value: Start2
       objectReference: {fileID: 0}
+    - target: {fileID: 681217899461737504, guid: 077262b3704440247823bba2d71c9cae,
+        type: 3}
+      propertyPath: nextLevel
+      value: 
+      objectReference: {fileID: 463435393208549334}
     - target: {fileID: 681217899461737505, guid: 077262b3704440247823bba2d71c9cae,
         type: 3}
       propertyPath: m_RootOrder
@@ -84,3 +89,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077262b3704440247823bba2d71c9cae, type: 3}
+--- !u!1 &463435393208549334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 681217899461737510, guid: 077262b3704440247823bba2d71c9cae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1088279132489647088}
+  m_PrefabAsset: {fileID: 0}

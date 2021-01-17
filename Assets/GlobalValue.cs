@@ -7,6 +7,12 @@ public class GlobalValue : Singleton<GlobalValue>
 {
     public DragRotation lastSelected;
     public List<Piece> pieces;
+
+    public void CleanPieces()
+    {
+        pieces.Clear();
+        lastSelected = null;
+    }
     public void UnselectCurrentPiece()
     {
 
@@ -16,6 +22,24 @@ public class GlobalValue : Singleton<GlobalValue>
             lastSelected.gameObject.SetActive(false);
         }
     }
+
+    public int lockedCount()
+    {
+        int res = 0;
+        foreach (Piece piece in pieces)
+        {
+            if (!piece.isLocked)
+            {
+                
+            }
+            else
+            {
+                res++;
+            }
+        }
+        return res;
+    }
+
     public void CheckWin()
     {
         bool isWin = true;
@@ -62,7 +86,11 @@ public class GlobalValue : Singleton<GlobalValue>
     // Start is called before the first frame update
     void Start()
     {
+        GameObject newLevel = Utils.InitLevel("Level1");
 
+        newLevel.GetComponent<LevelController>().StartSolvingLevel();
+
+        //Destroy(gameObject);
     }
 
     // Update is called once per frame

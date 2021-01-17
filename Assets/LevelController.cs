@@ -10,6 +10,8 @@ public class LevelController : MonoBehaviour
     public string levelName;
     public float speed;
     bool isRotating;
+    bool solvingBefore;
+    public GameObject nextLevel;
 
 
     private Vector3 zAxis = new Vector3(0, 0, 1);
@@ -21,12 +23,33 @@ public class LevelController : MonoBehaviour
         Utils.finishLevel += LevelFinished;
     }
 
+    public void StartSolvingLevel()
+    {
+        Utils.currentSolvingLevel = gameObject;
+        if (!solvingBefore)
+        {
+            string dialogueName = levelName + "Start";
+            if (PixelCrushers.DialogueSystem.DialogueManager.ConversationHasValidEntry(dialogueName))
+            {
+                PixelCrushers.DialogueSystem.DialogueManager.StartConversation(dialogueName);
+
+                PixelCrushers.DialogueSystem.DialogueLua.SetVariable(dialogueName, true);
+            }
+            solvingBefore = true;
+        }
+    }
+    public void EndSolvingLevel()
+    {
+        //splitObjects.SetActive(false);
+        Destroy(gameObject);
+    }
+
     void LevelFinished(string levelName)
     {
         string dialogueName = levelName+"Finished";
         if (PixelCrushers.DialogueSystem.DialogueManager.ConversationHasValidEntry(dialogueName))
         {
-           // PixelCrushers.DialogueSystem.DialogueManager.StartConversation(dialogueName);
+            PixelCrushers.DialogueSystem.DialogueManager.StartConversation(dialogueName);
         }
         isRotating = true;
     }
@@ -53,15 +76,11 @@ public class LevelController : MonoBehaviour
                 isRotating = false;
                 //triger dialog if needed
                 //or load another level
-                GameObject newLevel  = Instantiate(Resources.Load("Levels/Level2") as GameObject);
-                Destroy(gameObject);
-                string newLevelName = newLevel.GetComponent<LevelController>().levelName;
-                //Utils.startLevel(newLevelName);
-                string dialogueName = newLevelName+"Start";
-                if (PixelCrushers.DialogueSystem.DialogueManager.ConversationHasValidEntry(dialogueName))
-                {
-                    PixelCrushers.DialogueSystem.DialogueManager.StartConversation(dialogueName);
-                }
+                //GameObject newLevel = Utils.InitLevel("Level2");
+
+                //newLevel.GetComponent<LevelController>().StartSolvingLevel();
+                Utils.ReplaceLevel(gameObject, nextLevel);
+                //Destroy(gameObject); 
             }
         }
     }
