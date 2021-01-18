@@ -21,6 +21,10 @@ public class Character : MonoBehaviour
         {
             Debug.LogError(characterName + " does not have levels");
         }
+        if (characterName.Length == 0)
+        {
+            characterName = name;
+        }
     }
     public IEnumerator WaitFinishStart()
     {

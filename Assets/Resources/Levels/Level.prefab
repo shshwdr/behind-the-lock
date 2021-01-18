@@ -183,6 +183,7 @@ MonoBehaviour:
   isSeeable: 1
   Selector: {fileID: 100296029878038651}
   startLevel: 0
+  requiredLevelList: []
   isSelected: 0
 --- !u!1 &681217899577776148
 GameObject:
@@ -468,7 +469,6 @@ GameObject:
   - component: {fileID: 2508036304254336618}
   - component: {fileID: 2296941530922979966}
   - component: {fileID: 4950158409388062602}
-  - component: {fileID: 4107663678286540134}
   - component: {fileID: 394973549898756102}
   m_Layer: 0
   m_Name: cancleRotation
@@ -571,18 +571,6 @@ PolygonCollider2D:
       - {x: 6, y: -6}
       - {x: 6, y: 6}
     - - {x: 5.74, y: 5.74}
---- !u!114 &4107663678286540134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6573095659450629038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20855ad51f4776f4484190dfa86f3be9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &394973549898756102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2234,15 +2222,15 @@ PrefabInstance:
     - {fileID: 6449081344573190905, guid: 3d244329444ca1f4c8f512902707874b, type: 3}
     - {fileID: 6449081344573190908, guid: 3d244329444ca1f4c8f512902707874b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3d244329444ca1f4c8f512902707874b, type: 3}
---- !u!4 &5767863460917199960 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6449081344573190911, guid: 3d244329444ca1f4c8f512902707874b,
-    type: 3}
-  m_PrefabInstance: {fileID: 681217901374404263}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5767863460917199967 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6449081344573190904, guid: 3d244329444ca1f4c8f512902707874b,
+    type: 3}
+  m_PrefabInstance: {fileID: 681217901374404263}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5767863460917199960 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6449081344573190911, guid: 3d244329444ca1f4c8f512902707874b,
     type: 3}
   m_PrefabInstance: {fileID: 681217901374404263}
   m_PrefabAsset: {fileID: 0}

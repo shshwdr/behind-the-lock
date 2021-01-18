@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class LevelController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class LevelController : MonoBehaviour
     public bool isSeeable;
     public GameObject Selector;
     public bool startLevel;
+    public List<GameObject> requiredLevelList;
+    public Dictionary<GameObject,bool> requiredLevels;
 
     [HideInInspector]
     public bool isSelected;
@@ -23,10 +26,24 @@ public class LevelController : MonoBehaviour
 
     private Vector3 zAxis = new Vector3(0, 0, 1);
 
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        if (requiredLevelList.Count > 0)
+        {
+            isSeeable = false;
+            targetObject.SetActive(false);
+            splitObjects.SetActive(false);
+            Selector.SetActive(false);
+            requiredLevels = new Dictionary<GameObject, bool>();
+            foreach (GameObject go in requiredLevelList)
+            {
+                requiredLevels[go] = false;
+            }
+        }
+
         GlobalValue.Instance.levels.Add(this);
         Utils.finishLevel += LevelFinished;
         if (isAWall)
@@ -82,6 +99,34 @@ public class LevelController : MonoBehaviour
     {
         if (gameObject != Utils.currentSolvingLevel)
         {
+            if (!isSeeable)
+            {
+
+                bool allUnlocked = true;
+                List<GameObject> test = requiredLevels.Keys.ToList();
+                foreach (GameObject requiredLevel in test)
+                {
+                    if (requiredLevel == Utils.currentSolvingLevel)
+                    {
+                        requiredLevels[requiredLevel] = true;
+                    }
+                    else
+                    {
+                        if (!requiredLevels[requiredLevel])
+                        {
+                            allUnlocked = false;
+                        }
+                    }
+                }
+                if (allUnlocked)
+                {
+                    isSeeable = true;
+                    targetObject.SetActive(true);
+                    splitObjects.SetActive(true);
+                    Selector.SetActive(true);
+                }
+
+            }
             return;
         }
         string dialogueName = levelName+"Finished";
