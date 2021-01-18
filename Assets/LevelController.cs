@@ -17,6 +17,9 @@ public class LevelController : MonoBehaviour
     public GameObject Selector;
     public bool startLevel;
 
+    [HideInInspector]
+    public bool isSelected;
+
 
     private Vector3 zAxis = new Vector3(0, 0, 1);
 
@@ -26,9 +29,14 @@ public class LevelController : MonoBehaviour
     {
         GlobalValue.Instance.levels.Add(this);
         Utils.finishLevel += LevelFinished;
+        if (isAWall)
+        {
+            UpdateAsAWall();
+        }
         if (startLevel)
         {
             //StartSolvingLevel();
+            isSelected = true;
         }
     }
 
@@ -37,12 +45,16 @@ public class LevelController : MonoBehaviour
         //show selector and hide splitting pieces
         Selector.SetActive(true);
         splitObjects.SetActive(false);
+        Utils.currentSolvingLevel = null;
+        isSelected = false;
     }
 
     public void Select()
     {
         Selector.SetActive(false);
         splitObjects.SetActive(true);
+        Utils.currentSolvingLevel = gameObject;
+        isSelected = true;
     }
 
     public void StartSolvingLevel()
@@ -86,6 +98,23 @@ public class LevelController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             Utils.finishLevel(levelName);
+        }
+    }
+
+    void UpdateAsAWall()
+    {
+        foreach (Transform child in targetObject.transform)
+        {
+            child.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            child.gameObject.GetComponent<SpriteMask>().enabled = false;
+        }
+    }
+    void UpdateAsNotAWall()
+    {
+        foreach (Transform child in targetObject.transform)
+        {
+            child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            child.gameObject.GetComponent<SpriteMask>().enabled = true;
         }
     }
 
