@@ -12,12 +12,13 @@ public class Character : MonoBehaviour
     public string characterName;
 
     public List<GameObject> levels;
+    public bool noLevel = false;
 
     // Start is called before the first frame update
     void Start()
     {
         DOTween.Init();
-        if (levels.Count == 0)
+        if (!noLevel && levels.Count == 0)
         {
             Debug.LogError(characterName + " does not have levels");
         }

@@ -15,6 +15,13 @@ public class TargetGroupController : Singleton<TargetGroupController>
     }
     public void UpdateTarget(LevelController level)
     {
+        foreach (LevelController l in GlobalValue.Instance.levels)
+        {
+            if (l!=null&&l.isSeeable)
+            {
+                l.HideSelector();
+            }
+        }
         UpdateTargets(new List<LevelController>() { level });
     }
     public void UpdateTargets(List<LevelController> levels)
@@ -31,7 +38,7 @@ public class TargetGroupController : Singleton<TargetGroupController>
         List<LevelController> levels = new List<LevelController>();
         foreach (LevelController level in GlobalValue.Instance.levels)
         {
-            if (level.isSeeable)
+            if (level!=null&&level.isSeeable)
             {
                 levels.Add(level);
                 level.Deselect();

@@ -359,6 +359,11 @@ namespace PixelCrushers.DialogueSystem
             return hasInstance ? instance.ConversationHasValidEntry(title, actor, conversant) : false;
         }
 
+        public static bool HasConversation(string title)
+        {
+            return hasInstance ? instance.HasConversation(title) : false;
+        }
+
         /// <summary>
         /// Checks whether a conversation has any valid entries linked from the start entry, since it's possible that
         /// the conditions of all entries could be false.

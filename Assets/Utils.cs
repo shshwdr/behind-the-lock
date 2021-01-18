@@ -26,8 +26,11 @@ public class Utils : MonoBehaviour
     {
         GlobalValue.Instance.CleanPieces(); 
         GameObject newLevel = Instantiate(newLevelPrefab);
-        newLevel.GetComponent<LevelController>().StartSolvingLevel();
+        LevelController newLevelController = newLevel.GetComponent<LevelController>();
+        newLevelController.StartSolvingLevel();
 
+        newLevelController.Select();
+        TargetGroupController.Instance.UpdateTarget(newLevelController);
         Destroy(originLevel);
     }
     static public void FirstSolvingLevel(LevelController levelController)

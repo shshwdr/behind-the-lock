@@ -52,7 +52,7 @@ public class LevelController : MonoBehaviour
         }
         if (startLevel)
         {
-            //StartSolvingLevel();
+            StartSolvingLevel();
             isSelected = true;
         }
     }
@@ -72,6 +72,16 @@ public class LevelController : MonoBehaviour
         splitObjects.SetActive(true);
         Utils.currentSolvingLevel = gameObject;
         isSelected = true;
+    }
+
+    public void HideSelector()
+    {
+        Selector.SetActive(false);
+
+    }
+    public void ShowSelector()
+    {
+        Selector.SetActive(true);
     }
 
     public void StartSolvingLevel()

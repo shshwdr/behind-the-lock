@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using DG.Tweening;
 public class Piece : MonoBehaviour
 {
     public PolygonCollider2D targetCollider;
@@ -49,6 +50,7 @@ public class Piece : MonoBehaviour
 
     private void Start()
     {
+        DOTween.Init();
         collider = GetComponent<PolygonCollider2D>();
         generateInnerPoints();
         GlobalValue.Instance.pieces.Add(this);
@@ -98,7 +100,7 @@ public class Piece : MonoBehaviour
 
         //string dialogueHappened = currentLevelName + "Put" + lockedCount;
         bool dialogueHappened  = PixelCrushers.DialogueSystem.DialogueLua.GetVariable(dialogueName).AsBool;
-        if (PixelCrushers.DialogueSystem.DialogueManager.ConversationHasValidEntry(dialogueName)&& !dialogueHappened)
+        if (PixelCrushers.DialogueSystem.DialogueManager.HasConversation(dialogueName)&& !dialogueHappened)
         {
 
             GameObject resource = Resources.Load("Character/"+dialogueName) as GameObject;
@@ -204,8 +206,12 @@ public class Piece : MonoBehaviour
                         //dir = Quaternion.Euler(new Vector3(0, 0, selectedRotation)) * dir;
                         //closestPoint = dir + pivot;
                         //transform.position = closestPoint;
-                        transform.position = closestPoint;
-                        transform.eulerAngles = new Vector3(0, 0, testRotateDegree);
+                        float moveTime = 0.4f;
+                        transform.DOMove(closestPoint, moveTime);
+
+                        transform.DORotate(new Vector3(0, 0, testRotateDegree), moveTime);
+                        //transform.position = closestPoint;
+                        //transform.eulerAngles = new Vector3(0, 0, testRotateDegree);
                         isLocked = true;
                         return;
                     }

@@ -656,6 +656,13 @@ namespace PixelCrushers.DialogueSystem
             return model.hasValidEntry;
         }
 
+        public bool HasConversation(string title)
+        {
+            if (string.IsNullOrEmpty(title)) return false;
+            Conversation conversation = m_databaseManager.masterDatabase.GetConversation(title);
+            return conversation!=null;
+        }
+
         /// <summary>
         /// Checks whether a conversation has any valid entries linked from the start entry, since it's possible that
         /// the conditions of all entries could be false.
