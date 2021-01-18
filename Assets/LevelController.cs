@@ -12,15 +12,37 @@ public class LevelController : MonoBehaviour
     bool isRotating;
     bool solvingBefore;
     public GameObject nextLevel;
+    public bool isAWall;
+    public bool isSeeable;
+    public GameObject Selector;
+    public bool startLevel;
 
 
     private Vector3 zAxis = new Vector3(0, 0, 1);
 
+
     // Start is called before the first frame update
     void Start()
     {
-
+        GlobalValue.Instance.levels.Add(this);
         Utils.finishLevel += LevelFinished;
+        if (startLevel)
+        {
+            //StartSolvingLevel();
+        }
+    }
+
+    public void Deselect()
+    {
+        //show selector and hide splitting pieces
+        Selector.SetActive(true);
+        splitObjects.SetActive(false);
+    }
+
+    public void Select()
+    {
+        Selector.SetActive(false);
+        splitObjects.SetActive(true);
     }
 
     public void StartSolvingLevel()
@@ -57,6 +79,10 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Utils.currentSolvingLevel != this)
+        {
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.L))
         {
             Utils.finishLevel(levelName);

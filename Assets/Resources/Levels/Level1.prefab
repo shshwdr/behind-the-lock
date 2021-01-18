@@ -9,6 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 681217899461737504, guid: 077262b3704440247823bba2d71c9cae,
         type: 3}
+      propertyPath: isAWall
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 681217899461737504, guid: 077262b3704440247823bba2d71c9cae,
+        type: 3}
       propertyPath: levelName
       value: Start
       objectReference: {fileID: 0}

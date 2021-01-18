@@ -8,6 +8,8 @@ public class GlobalValue : Singleton<GlobalValue>
     public DragRotation lastSelected;
     public List<Piece> pieces;
 
+    public List<LevelController> levels;
+
     public void CleanPieces()
     {
         pieces.Clear();
@@ -86,10 +88,10 @@ public class GlobalValue : Singleton<GlobalValue>
     // Start is called before the first frame update
     void Start()
     {
-        GameObject newLevel = Utils.InitLevel("Level1");
+        //GameObject newLevel = Utils.InitLevel("Level1");
 
-        newLevel.GetComponent<LevelController>().StartSolvingLevel();
-        TargetGroupController.Instance.UpdateTargets(new List<LevelController>() { newLevel.GetComponent<LevelController>() });
+        //newLevel.GetComponent<LevelController>().StartSolvingLevel();
+        //TargetGroupController.Instance.UpdateTargets(new List<LevelController>() { newLevel.GetComponent<LevelController>() });
 
         //Destroy(gameObject);
     }

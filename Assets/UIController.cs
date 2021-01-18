@@ -10,6 +10,11 @@ public class UIController : MonoBehaviour
         
     }
 
+    public void OnClickBack()
+    {
+        TargetGroupController.Instance.UpdateAllSeeableTargets();
+    }
+
     // Update is called once per frame
     void Update()
     {
