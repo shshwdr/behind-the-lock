@@ -39,7 +39,7 @@ public class Character : MonoBehaviour
         {
 
             LevelController levelController = level.GetComponent<LevelController>();
-            if (levelController.isSelected)
+            if (levelController.isSelected && !levelController.isAWall)
             {
                 //Debug.Log(characterName + " check selected");
                 Collider2D targetCollider = levelController.targetObject.GetComponent<Collider2D>();

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Utils : MonoBehaviour
 {
 
-    public delegate void FinishLevel(string levelName);
+    public delegate void FinishLevel();
     public static FinishLevel finishLevel;
 
     public delegate void StartLevel(string levelName);

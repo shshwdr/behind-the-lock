@@ -37,6 +37,7 @@ public class TargetGroupController : Singleton<TargetGroupController>
                 level.Deselect();
             }
         }
+        GlobalValue.Instance.UnselectCurrentPiece();
         UpdateTargets(levels);
     }
 

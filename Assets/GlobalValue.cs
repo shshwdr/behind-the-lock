@@ -68,6 +68,7 @@ public class GlobalValue : Singleton<GlobalValue>
         {
 
             Debug.Log("WIN");
+            Utils.finishLevel();
         }
     }
 

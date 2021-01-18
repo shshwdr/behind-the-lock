@@ -1804,7 +1804,7 @@ PrefabInstance:
     - target: {fileID: 2465997165321600385, guid: 3e8779e1cb2881442b8d078f85aff630,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2465997165321600385, guid: 3e8779e1cb2881442b8d078f85aff630,
         type: 3}
@@ -1959,7 +1959,7 @@ PrefabInstance:
     - target: {fileID: 5662561290136804537, guid: 7a4ab45ff85eb20489ee0c6f5f7f1c81,
         type: 3}
       propertyPath: isAWall
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5662561290136804543, guid: 7a4ab45ff85eb20489ee0c6f5f7f1c81,
         type: 3}
@@ -2708,7 +2708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748045612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4.216249}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 355198254}
@@ -3973,6 +3973,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1022144051}
     m_Modifications:
+    - target: {fileID: 3072539481765154348, guid: 5b5238990c1953b408488062d861bf29,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 5722713927076820857, guid: 5b5238990c1953b408488062d861bf29,
         type: 3}
       propertyPath: m_Name
@@ -4037,6 +4042,11 @@ PrefabInstance:
         type: 3}
       propertyPath: startLevel
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264676004495963445, guid: 5b5238990c1953b408488062d861bf29,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b5238990c1953b408488062d861bf29, type: 3}
@@ -5468,7 +5478,7 @@ GameObject:
   - component: {fileID: 1313333227}
   - component: {fileID: 1313333228}
   m_Layer: 0
-  m_Name: af8d63a477078732b79ff9d9fc60873f
+  m_Name: bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5532,7 +5542,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313333224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.98, y: -0.3636942, z: -1}
+  m_LocalPosition: {x: 1.98, y: -0.3636942, z: 30}
   m_LocalScale: {x: 10, y: 10, z: 1.4624}
   m_Children: []
   m_Father: {fileID: 0}

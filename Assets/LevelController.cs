@@ -78,8 +78,12 @@ public class LevelController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void LevelFinished(string levelName)
+    void LevelFinished()
     {
+        if (gameObject != Utils.currentSolvingLevel)
+        {
+            return;
+        }
         string dialogueName = levelName+"Finished";
         if (PixelCrushers.DialogueSystem.DialogueManager.ConversationHasValidEntry(dialogueName))
         {
@@ -91,13 +95,13 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Utils.currentSolvingLevel != this)
+        if (Utils.currentSolvingLevel != gameObject)
         {
             return;
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Utils.finishLevel(levelName);
+            Utils.finishLevel();
         }
     }
 
@@ -129,13 +133,15 @@ public class LevelController : MonoBehaviour
             if (targetObject.transform.eulerAngles.z >179)
             {
                 isRotating = false;
-                //triger dialog if needed
-                //or load another level
-                //GameObject newLevel = Utils.InitLevel("Level2");
-
-                //newLevel.GetComponent<LevelController>().StartSolvingLevel();
-                Utils.ReplaceLevel(gameObject, nextLevel);
-                //Destroy(gameObject); 
+                if (isAWall)
+                {
+                    isAWall = false;
+                    UpdateAsNotAWall();
+                }
+                else
+                {
+                    Utils.ReplaceLevel(gameObject, nextLevel);
+                }
             }
         }
     }
