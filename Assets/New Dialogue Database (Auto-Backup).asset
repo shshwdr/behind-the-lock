@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 935899b62f48ae5498594680ed17d133, type: 3}
-  m_Name: New Dialogue Database
+  m_Name: New Dialogue Database (Auto-Backup)
   m_EditorClassIdentifier: 
   version: 
   author: 
@@ -2291,7 +2291,7 @@ MonoBehaviour:
   - id: 6
     fields:
     - title: Title
-      value: GirlClick
+      value: Girl
       type: 0
       typeString: 
     - title: Pictures
@@ -2405,18 +2405,6 @@ MonoBehaviour:
       - originConversationID: 6
         originDialogueID: 0
         destinationConversationID: 6
-        destinationDialogueID: 33
-        isConnector: 0
-        priority: 2
-      - originConversationID: 6
-        originDialogueID: 0
-        destinationConversationID: 6
-        destinationDialogueID: 31
-        isConnector: 0
-        priority: 2
-      - originConversationID: 6
-        originDialogueID: 0
-        destinationConversationID: 6
         destinationDialogueID: 1
         isConnector: 0
         priority: 2
@@ -2428,7 +2416,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 20
-        y: 27.674423
+        y: 30
         width: 160
         height: 30
     - id: 1
@@ -2446,7 +2434,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 2
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -2511,7 +2499,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 20
-        y: 77.95917
+        y: 80
         width: 160
         height: 30
     - id: 2
@@ -4887,7 +4875,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 591.0525
-        y: 844.8052
+        y: 846.97906
         width: 160
         height: 30
     - id: 30
@@ -4967,341 +4955,8 @@ MonoBehaviour:
         y: 740.88153
         width: 160
         height: 30
-    - id: 31
-      fields:
-      - title: Title
-        value: New Dialogue Entry
-        type: 0
-        typeString: 
-      - title: Pictures
-        value: '[]'
-        type: 3
-        typeString: CustomFieldType_Files
-      - title: Description
-        value: 
-        type: 0
-        typeString: 
-      - title: Actor
-        value: 2
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 3
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: 
-      - title: Dialogue Text
-        value: Hi again.
-        type: 0
-        typeString: 
-      - title: Parenthetical
-        value: 
-        type: 0
-        typeString: 
-      - title: Audio Files
-        value: '[]'
-        type: 3
-        typeString: CustomFieldType_Files
-      - title: Video File
-        value: 
-        type: 0
-        typeString: 
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: 
-      - title: canvasRect
-        value: 
-        type: 0
-        typeString: 
-      - title: EventGuid
-        value: 
-        type: 0
-        typeString: 
-      - title: Response Menu Sequence
-        value: 
-        type: 0
-        typeString: 
-      conversationID: 6
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 6
-        originDialogueID: 31
-        destinationConversationID: 6
-        destinationDialogueID: 32
-        isConnector: 0
-        priority: 2
-      conditionsString: (Variable["girlTalkSaver"] == true) and (Variable["girlTalkLooking"]
-        == true)
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 715.5163
-        y: 93.793915
-        width: 160
-        height: 30
-    - id: 32
-      fields:
-      - title: Title
-        value: New Dialogue Entry
-        type: 0
-        typeString: 
-      - title: Pictures
-        value: '[]'
-        type: 3
-        typeString: CustomFieldType_Files
-      - title: Description
-        value: 
-        type: 0
-        typeString: 
-      - title: Actor
-        value: 3
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 2
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: 
-      - title: Dialogue Text
-        value: Want to take me?
-        type: 0
-        typeString: 
-      - title: Parenthetical
-        value: 
-        type: 0
-        typeString: 
-      - title: Audio Files
-        value: '[]'
-        type: 3
-        typeString: CustomFieldType_Files
-      - title: Video File
-        value: 
-        type: 0
-        typeString: 
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: 
-      - title: canvasRect
-        value: 
-        type: 0
-        typeString: 
-      - title: EventGuid
-        value: 
-        type: 0
-        typeString: 
-      - title: Response Menu Sequence
-        value: 
-        type: 0
-        typeString: 
-      conversationID: 6
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 6
-        originDialogueID: 32
-        destinationConversationID: 6
-        destinationDialogueID: 30
-        isConnector: 0
-        priority: 2
-      - originConversationID: 6
-        originDialogueID: 32
-        destinationConversationID: 6
-        destinationDialogueID: 27
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 754.04083
-        y: 198.71193
-        width: 160
-        height: 30
-    - id: 33
-      fields:
-      - title: Title
-        value: New Dialogue Entry
-        type: 0
-        typeString: 
-      - title: Pictures
-        value: '[]'
-        type: 3
-        typeString: CustomFieldType_Files
-      - title: Description
-        value: 
-        type: 0
-        typeString: 
-      - title: Actor
-        value: 2
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 3
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: 
-      - title: Dialogue Text
-        value: Any idea what should we do now?
-        type: 0
-        typeString: 
-      - title: Parenthetical
-        value: 
-        type: 0
-        typeString: 
-      - title: Audio Files
-        value: '[]'
-        type: 3
-        typeString: CustomFieldType_Files
-      - title: Video File
-        value: 
-        type: 0
-        typeString: 
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: 
-      - title: canvasRect
-        value: 
-        type: 0
-        typeString: 
-      - title: EventGuid
-        value: 
-        type: 0
-        typeString: 
-      - title: Response Menu Sequence
-        value: 
-        type: 0
-        typeString: 
-      conversationID: 6
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 6
-        originDialogueID: 33
-        destinationConversationID: 6
-        destinationDialogueID: 34
-        isConnector: 0
-        priority: 2
-      conditionsString: Variable["takeGirl"] == true
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 983.9339
-        y: 55.40985
-        width: 160
-        height: 30
-    - id: 34
-      fields:
-      - title: Title
-        value: New Dialogue Entry
-        type: 0
-        typeString: 
-      - title: Pictures
-        value: '[]'
-        type: 3
-        typeString: CustomFieldType_Files
-      - title: Description
-        value: 
-        type: 0
-        typeString: 
-      - title: Actor
-        value: 3
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: 
-      - title: Dialogue Text
-        value: Search around and see if we can find the key for me.
-        type: 0
-        typeString: 
-      - title: Parenthetical
-        value: 
-        type: 0
-        typeString: 
-      - title: Audio Files
-        value: '[]'
-        type: 3
-        typeString: CustomFieldType_Files
-      - title: Video File
-        value: 
-        type: 0
-        typeString: 
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: 
-      - title: canvasRect
-        value: 
-        type: 0
-        typeString: 
-      - title: EventGuid
-        value: 
-        type: 0
-        typeString: 
-      - title: Response Menu Sequence
-        value: 
-        type: 0
-        typeString: 
-      conversationID: 6
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks: []
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 1006.8847
-        y: 175.90164
-        width: 160
-        height: 30
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.4300004
+    canvasScrollPosition: {x: 0, y: 461.57288}
+    canvasZoom: 0.64000034
   syncInfo:
     syncActors: 0
     syncItems: 0

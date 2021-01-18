@@ -56,6 +56,7 @@ MonoBehaviour:
   moveEnd: {x: -0.5, y: 0}
   moveTime: 3
   characterName: 
+  levels: []
 --- !u!60 &3850087019757825772
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -81,11 +82,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1}
+    - - {x: 2.0197883, y: 3.221767}
       - {x: -0.95105654, y: 0.30901697}
       - {x: -0.5877852, y: -0.80901706}
-      - {x: 0.58778536, y: -0.80901694}
-      - {x: 0.9510565, y: 0.30901712}
+      - {x: 2.2121212, y: -5.582122}
+      - {x: 5.6372547, y: -5.0505743}
+      - {x: 4.788656, y: 1.3189106}
 --- !u!50 &2175149447956724377
 Rigidbody2D:
   serializedVersion: 4
