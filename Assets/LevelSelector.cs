@@ -12,6 +12,10 @@ public class LevelSelector : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        if (Utils.Pause)
+        {
+            return;
+        }
         levelController.Select();
         TargetGroupController.Instance.UpdateTarget(levelController);
     }
