@@ -44,6 +44,11 @@ public class LevelController : MonoBehaviour
             }
         }
 
+        foreach (Transform child in targetObject.transform)
+        {
+            child.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+        }
+
         GlobalValue.Instance.levels.Add(this);
         Utils.finishLevel += LevelFinished;
         if (isAWall)
@@ -53,6 +58,8 @@ public class LevelController : MonoBehaviour
         if (startLevel)
         {
             StartSolvingLevel();
+
+            splitObjects.SetActive(true);
             isSelected = true;
         }
     }
@@ -90,7 +97,7 @@ public class LevelController : MonoBehaviour
         if (!solvingBefore)
         {
             string dialogueName = levelName + "Start";
-            if (PixelCrushers.DialogueSystem.DialogueManager.ConversationHasValidEntry(dialogueName))
+            if (PixelCrushers.DialogueSystem.DialogueManager.HasConversation(dialogueName))
             {
                 PixelCrushers.DialogueSystem.DialogueManager.StartConversation(dialogueName);
 

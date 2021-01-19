@@ -136,6 +136,10 @@ public class Piece : MonoBehaviour
             //for each rotation, check for each collider point, if it is close to a target point
 
             float[] rotateDegrees = { 0, 45, -45, 90, -90, 135, -135, 180 };
+            if (!GlobalValue.Instance.AutoRotation)
+            {
+                rotateDegrees = new float[]{ 0};
+            }
             foreach (float rotateDegree in rotateDegrees)
             {
 
@@ -146,7 +150,26 @@ public class Piece : MonoBehaviour
                     //rotate collider point
                     Vector2 colliderPointAfterRotation = rotateAroundVector(colliderPoint, Vector2.zero, testRotateDegree);
                     Vector2 colliderPointPosition = colliderPointAfterRotation + mousePosition;
-                    foreach (Vector2 targetPoint in targetCollider.points)
+
+                    List<Vector2> snapPoints = new List<Vector2>(targetCollider.points);
+
+                    
+                    foreach (Piece otherPiece in GlobalValue.Instance.pieces)
+                    {
+                        if (otherPiece != this && otherPiece.isLocked)
+                        {
+                            foreach (Vector2 otherPieceColliderPoint in otherPiece.collider.points)
+                            {
+                                Vector2 opPointBeforeRotation = otherPieceColliderPoint;
+                                Vector2 opPointAFterRotation = rotateAroundVector(opPointBeforeRotation, Vector2.zero, otherPiece.transform.rotation.eulerAngles.z);
+                                Vector2 opPointAFterMove = opPointAFterRotation + (Vector2)otherPiece.transform.position;
+                                snapPoints.Add(opPointAFterMove);
+                            }
+                        }
+                    }
+
+
+                    foreach (Vector2 targetPoint in snapPoints)
                     {
                         Vector2 tempClosestPoint = targetPoint + (Vector2)targetCollider.transform.position;
                         float tempDistance = (tempClosestPoint - colliderPointPosition).SqrMagnitude();

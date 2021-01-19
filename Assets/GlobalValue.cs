@@ -10,6 +10,8 @@ public class GlobalValue : Singleton<GlobalValue>
 
     public List<LevelController> levels;
 
+    public bool AutoRotation;
+    public bool IgnoreTarget;
     public void CleanPieces()
     {
         pieces.Clear();
