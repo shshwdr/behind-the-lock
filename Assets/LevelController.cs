@@ -31,6 +31,10 @@ public class LevelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (levelName == null ||levelName.Length == 0)
+        {
+            levelName = name;
+        }
         if (requiredLevelList.Count > 0)
         {
             isSeeable = false;
@@ -55,13 +59,19 @@ public class LevelController : MonoBehaviour
         {
             UpdateAsAWall();
         }
+        else
+        {
+            UpdateAsNotAWall();
+        }
         if (startLevel)
         {
             StartSolvingLevel();
 
             splitObjects.SetActive(true);
+           // TargetGroupController.Instance.UpdateTarget(this);
             isSelected = true;
         }
+        HideSelector();
     }
 
     public void Deselect()

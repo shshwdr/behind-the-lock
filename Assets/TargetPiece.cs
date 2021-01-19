@@ -98,6 +98,14 @@ public class TargetPiece : MonoBehaviour
         {
             Start();
         }
+
+
+        //rotate self
+        float zRotation = transform.rotation.eulerAngles.z;
+        zRotation = Mathf.Round(zRotation / 45f) * 45;
+        transform.eulerAngles = new Vector3(0, 0, zRotation);
+
+
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 closestPoint = Vector2.negativeInfinity;
         Vector2 snapToPoint = Vector2.zero;//the point on target that will snap to
