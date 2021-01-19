@@ -21,6 +21,7 @@ public class TargetPiece : MonoBehaviour
     List<TargetPiece> otherTargetPieces;
     void generateInnerPoints()
     {
+        innerPoints = new List<Vector2>();
         Vector2 certerPoint = Vector2.zero;
         foreach (Vector2 targetPoint in collider.points)
         {
@@ -122,7 +123,7 @@ public class TargetPiece : MonoBehaviour
             {
                 //rotate collider point
                 Vector2 colliderPointAfterRotation = rotateAroundVector(colliderPoint, Vector2.zero, transform.rotation.eulerAngles.z);
-                Vector2 colliderPointPosition = colliderPointAfterRotation + (Vector2)transform.position;
+                Vector2 colliderPointPosition = colliderPointAfterRotation + (Vector2)transform.localPosition;
 
                 List<Vector2> snapPoints = new List<Vector2>();
 
@@ -132,7 +133,7 @@ public class TargetPiece : MonoBehaviour
                     {
                         Vector2 opPointBeforeRotation = otherPieceColliderPoint;
                         Vector2 opPointAFterRotation = rotateAroundVector(opPointBeforeRotation, Vector2.zero, otherPiece.transform.rotation.eulerAngles.z);
-                        Vector2 opPointAFterMove = opPointAFterRotation + (Vector2)otherPiece.transform.position;
+                        Vector2 opPointAFterMove = opPointAFterRotation + (Vector2)otherPiece.transform.localPosition;
                         snapPoints.Add(opPointAFterMove);
                     }
                 }
@@ -201,7 +202,7 @@ public class TargetPiece : MonoBehaviour
                     //transform.DOMove(closestPoint, moveTime);
 
                     //transform.DORotate(new Vector3(0, 0, testRotateDegree), moveTime);
-                    transform.position = closestPoint;
+                    transform.localPosition = closestPoint;
                     //transform.eulerAngles = new Vector3(0, 0, testRotateDegree);
                     //isLocked = true;
                     return;

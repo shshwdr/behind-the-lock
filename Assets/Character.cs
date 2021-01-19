@@ -26,6 +26,12 @@ public class Character : MonoBehaviour
         {
             characterName = name;
         }
+
+        foreach(SpriteMask mask in GetComponentsInChildren<SpriteMask>())
+        {
+            mask.enabled = false;
+            mask.GetComponent<TargetPiece>().enabled = false;
+        }
     }
     public IEnumerator WaitFinishStart()
     {
