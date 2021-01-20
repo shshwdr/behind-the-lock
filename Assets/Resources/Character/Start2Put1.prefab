@@ -72,5 +72,15 @@ PrefabInstance:
       propertyPath: noLevel
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8460962759747606548, guid: 3cdab477c084707408b0029256378b64,
+        type: 3}
+      propertyPath: moveTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460962759747606548, guid: 3cdab477c084707408b0029256378b64,
+        type: 3}
+      propertyPath: moveEnd.x
+      value: -1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cdab477c084707408b0029256378b64, type: 3}

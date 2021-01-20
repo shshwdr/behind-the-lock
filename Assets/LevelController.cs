@@ -26,6 +26,8 @@ public class LevelController : MonoBehaviour
 
     private Vector3 zAxis = new Vector3(0, 0, 1);
 
+    Vector3 originPosition;
+
     
 
     // Start is called before the first frame update
@@ -47,7 +49,7 @@ public class LevelController : MonoBehaviour
                 requiredLevels[go] = false;
             }
         }
-
+        originPosition = targetObject.transform.position;
         foreach (Transform child in targetObject.transform)
         {
             child.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
@@ -161,6 +163,9 @@ public class LevelController : MonoBehaviour
         {
             PixelCrushers.DialogueSystem.DialogueManager.StartConversation(dialogueName);
         }
+        splitObjects.transform.parent = targetObject.transform;
+
+        Utils.finishLevel -= LevelFinished;
         isRotating = true;
     }
 
@@ -193,18 +198,20 @@ public class LevelController : MonoBehaviour
             child.gameObject.GetComponent<SpriteMask>().enabled = true;
         }
     }
-
     void FixedUpdate()
     {
-        if (isRotating && targetObject.transform.rotation.z >= 0)
+        if (isRotating)
         {
             targetObject.transform.RotateAround(center.position, zAxis, speed);
             //Debug.Log("rotation "+targetObject.transform.rotation.z);
 
             //Debug.Log("euler " + targetObject.transform.eulerAngles.z);
-            if (targetObject.transform.eulerAngles.z >179)
+            if (targetObject.transform.eulerAngles.z >360-5)
             {
                 isRotating = false;
+                splitObjects.transform.parent = targetObject.transform.parent;
+                targetObject.transform.eulerAngles = Vector3.zero;
+                targetObject.transform.position = originPosition;
                 if (isAWall)
                 {
                     isAWall = false;

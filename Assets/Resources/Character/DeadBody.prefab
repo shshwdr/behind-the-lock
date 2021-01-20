@@ -167,6 +167,11 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6256645130127504156, guid: 3cdab477c084707408b0029256378b64,
+        type: 3}
+      propertyPath: m_GeometryType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7004936432498207870, guid: 3cdab477c084707408b0029256378b64,
         type: 3}
       propertyPath: m_Enabled
@@ -242,5 +247,6 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3850087019757825772, guid: 3cdab477c084707408b0029256378b64, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3cdab477c084707408b0029256378b64, type: 3}
