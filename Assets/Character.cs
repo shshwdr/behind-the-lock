@@ -39,9 +39,29 @@ public class Character : MonoBehaviour
     }
     public IEnumerator Move(Vector2 start,Vector2 target,float moveTime)
     {
+
+        SFXPlayer.Instance.playSound("run");
         transform.position = start;
         Tween myTween = transform.DOMove(target, moveTime);
         yield return myTween.WaitForCompletion();
+        Destroy(gameObject);
+    }
+
+    public void LeftItem(GameObject leftItem)
+    {
+        SFXPlayer.Instance.playSound("horseRun");
+        GameObject leftItemInstance = Instantiate(leftItem, transform.position,Quaternion.identity, transform.parent);
+        leftItemInstance.GetComponent<Character>().levels = levels;
+        leftItemInstance.name = "Key";
+    }
+
+    public void MoveDiff()
+    {
+
+        SFXPlayer.Instance.playSound("run");
+        Tween myTween = transform.DOMove((Vector2)transform.position+ moveEnd, moveTime);
+        //yield return myTween.WaitForCompletion();
+       // Destroy(gameObject);
     }
     private void OnMouseDown()
     {

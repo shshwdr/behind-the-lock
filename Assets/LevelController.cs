@@ -167,6 +167,7 @@ public class LevelController : MonoBehaviour
 
         Utils.finishLevel -= LevelFinished;
         isRotating = true;
+        SFXPlayer.Instance.playSound("lock");
     }
 
     // Update is called once per frame
