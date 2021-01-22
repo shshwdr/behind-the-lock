@@ -8457,12 +8457,6 @@ MonoBehaviour:
       - originConversationID: 9
         originDialogueID: 0
         destinationConversationID: 9
-        destinationDialogueID: 13
-        isConnector: 0
-        priority: 2
-      - originConversationID: 9
-        originDialogueID: 0
-        destinationConversationID: 9
         destinationDialogueID: 11
         isConnector: 0
         priority: 2
@@ -9817,7 +9811,7 @@ MonoBehaviour:
         y: 239.72852
         width: 160
         height: 30
-    canvasScrollPosition: {x: 0, y: 41.818146}
+    canvasScrollPosition: {x: 54.54547, y: 0}
     canvasZoom: 0.55000037
   - id: 10
     fields:
