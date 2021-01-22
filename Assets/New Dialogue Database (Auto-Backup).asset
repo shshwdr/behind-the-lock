@@ -255,6 +255,20 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: 
+  - id: 8
+    fields:
+    - title: Name
+      value: girlLike
+      type: 0
+      typeString: 
+    - title: Initial Value
+      value: -1
+      type: 1
+      typeString: CustomFieldType_Number
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
   conversations:
   - id: 1
     fields:
@@ -4205,7 +4219,7 @@ MonoBehaviour:
         originDialogueID: 12
         destinationConversationID: 6
         destinationDialogueID: 13
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: 
@@ -4288,29 +4302,32 @@ MonoBehaviour:
         originDialogueID: 13
         destinationConversationID: 6
         destinationDialogueID: 6
-        isConnector: 0
+        isConnector: 1
         priority: 2
       - originConversationID: 6
         originDialogueID: 13
         destinationConversationID: 6
         destinationDialogueID: 7
-        isConnector: 0
+        isConnector: 1
         priority: 2
       - originConversationID: 6
         originDialogueID: 13
         destinationConversationID: 6
         destinationDialogueID: 19
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
-      userScript: Variable["girlTalkSaver"] = true
+      userScript: 'Variable["girlTalkSaver"] = true;
+
+        Variable["girlLike"]
+        = Variable["girlLike"] + 1'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 22.127663
-        y: 585.0131
+        x: 70.69907
+        y: 627.87024
         width: 160
         height: 30
     - id: 14
@@ -4717,19 +4734,19 @@ MonoBehaviour:
         originDialogueID: 18
         destinationConversationID: 6
         destinationDialogueID: 6
-        isConnector: 0
+        isConnector: 1
         priority: 2
       - originConversationID: 6
         originDialogueID: 18
         destinationConversationID: 6
         destinationDialogueID: 7
-        isConnector: 0
+        isConnector: 1
         priority: 2
       - originConversationID: 6
         originDialogueID: 18
         destinationConversationID: 6
         destinationDialogueID: 19
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: Variable["girlTalkLooking"] = true
@@ -5396,13 +5413,13 @@ MonoBehaviour:
         originDialogueID: 26
         destinationConversationID: 6
         destinationDialogueID: 27
-        isConnector: 0
+        isConnector: 1
         priority: 2
       - originConversationID: 6
         originDialogueID: 26
         destinationConversationID: 6
         destinationDialogueID: 30
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: 
@@ -5726,7 +5743,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: Variable["girlLike"] = Variable["girlLike"] - 1
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -6304,13 +6321,13 @@ MonoBehaviour:
       - originConversationID: 6
         originDialogueID: 37
         destinationConversationID: 6
-        destinationDialogueID: 38
+        destinationDialogueID: 39
         isConnector: 0
         priority: 2
       - originConversationID: 6
         originDialogueID: 37
         destinationConversationID: 6
-        destinationDialogueID: 39
+        destinationDialogueID: 38
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -6479,7 +6496,7 @@ MonoBehaviour:
         destinationDialogueID: 44
         isConnector: 0
         priority: 2
-      conditionsString: 
+      conditionsString: Variable["girlLike"] >= 0
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -6644,7 +6661,7 @@ MonoBehaviour:
         originDialogueID: 41
         destinationConversationID: 6
         destinationDialogueID: 42
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: 
@@ -7255,11 +7272,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 3
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 1
+        value: 3
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -7267,7 +7284,90 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: 'You '
+        value: You stayed in this place.
+        type: 0
+        typeString: 
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: 
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      - title: canvasRect
+        value: 
+        type: 0
+        typeString: 
+      - title: EventGuid
+        value: 
+        type: 0
+        typeString: 
+      - title: Response Menu Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 6
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 6
+        originDialogueID: 49
+        destinationConversationID: 6
+        destinationDialogueID: 50
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 1536.1571
+        y: 520.0492
+        width: 160
+        height: 30
+    - id: 50
+      fields:
+      - title: Title
+        value: New Dialogue Entry
+        type: 0
+        typeString: 
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 3
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: (The End.)
         type: 0
         typeString: 
       - title: Parenthetical
@@ -7314,10 +7414,10 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 1536.1571
-        y: 520.0492
+        y: 570.0492
         width: 160
         height: 30
-    canvasScrollPosition: {x: 620.44293, y: 325.76352}
+    canvasScrollPosition: {x: 0, y: 0}
     canvasZoom: 0.7000001
   - id: 7
     fields:
@@ -7436,7 +7536,7 @@ MonoBehaviour:
       - originConversationID: 7
         originDialogueID: 0
         destinationConversationID: 7
-        destinationDialogueID: 1
+        destinationDialogueID: 5
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -7777,6 +7877,89 @@ MonoBehaviour:
         serializedVersion: 2
         x: 20
         y: 228.36066
+        width: 160
+        height: 30
+    - id: 5
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 3
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: This man is sleeping.
+        type: 0
+        typeString: 
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: 
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      - title: canvasRect
+        value: 
+        type: 0
+        typeString: 
+      - title: EventGuid
+        value: 
+        type: 0
+        typeString: 
+      - title: Response Menu Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 7
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 7
+        originDialogueID: 5
+        destinationConversationID: 7
+        destinationDialogueID: 1
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 238.03267
+        y: 40.65576
         width: 160
         height: 30
     canvasScrollPosition: {x: 0, y: 0}
@@ -8964,10 +9147,13 @@ MonoBehaviour:
         originDialogueID: 8
         destinationConversationID: 9
         destinationDialogueID: 11
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
-      userScript: Variable["horseTalked"] = true
+      userScript: 'Variable["horseTalked"] = true;
+
+        Variable["girlLike"]
+        = Variable["girlLike"] + 1'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -9130,7 +9316,7 @@ MonoBehaviour:
         originDialogueID: 10
         destinationConversationID: 9
         destinationDialogueID: 11
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: Variable["horseTalked"] = true
@@ -9298,7 +9484,7 @@ MonoBehaviour:
         originDialogueID: 12
         destinationConversationID: 9
         destinationDialogueID: 13
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: 
@@ -9631,7 +9817,7 @@ MonoBehaviour:
         y: 239.72852
         width: 160
         height: 30
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 0, y: 41.818146}
     canvasZoom: 0.55000037
   - id: 10
     fields:

@@ -4219,7 +4219,7 @@ MonoBehaviour:
         originDialogueID: 12
         destinationConversationID: 6
         destinationDialogueID: 13
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: 
@@ -4302,19 +4302,19 @@ MonoBehaviour:
         originDialogueID: 13
         destinationConversationID: 6
         destinationDialogueID: 6
-        isConnector: 0
+        isConnector: 1
         priority: 2
       - originConversationID: 6
         originDialogueID: 13
         destinationConversationID: 6
         destinationDialogueID: 7
-        isConnector: 0
+        isConnector: 1
         priority: 2
       - originConversationID: 6
         originDialogueID: 13
         destinationConversationID: 6
         destinationDialogueID: 19
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: 'Variable["girlTalkSaver"] = true;
@@ -4734,19 +4734,19 @@ MonoBehaviour:
         originDialogueID: 18
         destinationConversationID: 6
         destinationDialogueID: 6
-        isConnector: 0
+        isConnector: 1
         priority: 2
       - originConversationID: 6
         originDialogueID: 18
         destinationConversationID: 6
         destinationDialogueID: 7
-        isConnector: 0
+        isConnector: 1
         priority: 2
       - originConversationID: 6
         originDialogueID: 18
         destinationConversationID: 6
         destinationDialogueID: 19
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: Variable["girlTalkLooking"] = true
@@ -5413,13 +5413,13 @@ MonoBehaviour:
         originDialogueID: 26
         destinationConversationID: 6
         destinationDialogueID: 27
-        isConnector: 0
+        isConnector: 1
         priority: 2
       - originConversationID: 6
         originDialogueID: 26
         destinationConversationID: 6
         destinationDialogueID: 30
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: 
@@ -6661,7 +6661,7 @@ MonoBehaviour:
         originDialogueID: 41
         destinationConversationID: 6
         destinationDialogueID: 42
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: 
@@ -8457,12 +8457,6 @@ MonoBehaviour:
       - originConversationID: 9
         originDialogueID: 0
         destinationConversationID: 9
-        destinationDialogueID: 13
-        isConnector: 0
-        priority: 2
-      - originConversationID: 9
-        originDialogueID: 0
-        destinationConversationID: 9
         destinationDialogueID: 11
         isConnector: 0
         priority: 2
@@ -9147,7 +9141,7 @@ MonoBehaviour:
         originDialogueID: 8
         destinationConversationID: 9
         destinationDialogueID: 11
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: 'Variable["horseTalked"] = true;
@@ -9316,7 +9310,7 @@ MonoBehaviour:
         originDialogueID: 10
         destinationConversationID: 9
         destinationDialogueID: 11
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: Variable["horseTalked"] = true
@@ -9484,7 +9478,7 @@ MonoBehaviour:
         originDialogueID: 12
         destinationConversationID: 9
         destinationDialogueID: 13
-        isConnector: 0
+        isConnector: 1
         priority: 2
       conditionsString: 
       userScript: 
@@ -9817,7 +9811,7 @@ MonoBehaviour:
         y: 239.72852
         width: 160
         height: 30
-    canvasScrollPosition: {x: 0, y: 41.818146}
+    canvasScrollPosition: {x: 54.54547, y: 0}
     canvasZoom: 0.55000037
   - id: 10
     fields:

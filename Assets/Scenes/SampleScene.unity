@@ -2514,7 +2514,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.46
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4166,12 +4166,12 @@ PrefabInstance:
     - target: {fileID: 7415702702411311947, guid: 2de4fef28469e0d42a0ccab726b986dc,
         type: 3}
       propertyPath: isAWall
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7415702702411311947, guid: 2de4fef28469e0d42a0ccab726b986dc,
         type: 3}
       propertyPath: requiredLevelList.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7415702702411311947, guid: 2de4fef28469e0d42a0ccab726b986dc,
         type: 3}
@@ -4298,7 +4298,7 @@ PrefabInstance:
     - target: {fileID: 5662561290136804537, guid: 7a4ab45ff85eb20489ee0c6f5f7f1c81,
         type: 3}
       propertyPath: isAWall
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5662561290136804543, guid: 7a4ab45ff85eb20489ee0c6f5f7f1c81,
         type: 3}
@@ -8869,7 +8869,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.43
+  orthographic size: 3.125
   m_Depth: -5
   m_CullingMask:
     serializedVersion: 2
@@ -11987,7 +11987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: displaySettings.inputSettings.includeInvalidEntries
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: displaySettings.cameraSettings.defaultPlayerSequence
@@ -15560,8 +15560,18 @@ PrefabInstance:
     - target: {fileID: 8313740067046551614, guid: beb413de28cfa6e469da67a3bbb9a6c0,
         type: 3}
       propertyPath: isAWall
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8313740067046551614, guid: beb413de28cfa6e469da67a3bbb9a6c0,
+        type: 3}
+      propertyPath: requiredLevelList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8313740067046551614, guid: beb413de28cfa6e469da67a3bbb9a6c0,
+        type: 3}
+      propertyPath: requiredLevelList.Array.data[0]
+      value: 
+      objectReference: {fileID: 47489550}
     - target: {fileID: 8313740067046551615, guid: beb413de28cfa6e469da67a3bbb9a6c0,
         type: 3}
       propertyPath: m_RootOrder
@@ -16343,8 +16353,18 @@ PrefabInstance:
     - target: {fileID: 8815069597219262062, guid: 400ac70dbd611b74e83cc805a7ba3d6f,
         type: 3}
       propertyPath: isAWall
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8815069597219262062, guid: 400ac70dbd611b74e83cc805a7ba3d6f,
+        type: 3}
+      propertyPath: requiredLevelList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815069597219262062, guid: 400ac70dbd611b74e83cc805a7ba3d6f,
+        type: 3}
+      propertyPath: requiredLevelList.Array.data[0]
+      value: 
+      objectReference: {fileID: 1774165218}
     - target: {fileID: 8815069597219262063, guid: 400ac70dbd611b74e83cc805a7ba3d6f,
         type: 3}
       propertyPath: m_RootOrder
