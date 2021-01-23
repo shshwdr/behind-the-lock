@@ -13,6 +13,7 @@ public class Utils : MonoBehaviour
 
     public static GameObject currentSolvingLevel; 
     public static bool Pause;
+    public static bool End;
 
     static public void UpdateSolvingLevel(GameObject currentLevel)
     {

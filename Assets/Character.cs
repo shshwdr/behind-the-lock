@@ -49,7 +49,6 @@ public class Character : MonoBehaviour
 
     public void LeftItem(GameObject leftItem)
     {
-        SFXPlayer.Instance.playSound("horseRun");
         GameObject leftItemInstance = Instantiate(leftItem, transform.position,Quaternion.identity, transform.parent);
         leftItemInstance.GetComponent<Character>().levels = levels;
         leftItemInstance.name = "Key";
@@ -65,6 +64,10 @@ public class Character : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        if(Utils.Pause || Utils.End)
+        {
+            return;
+        }
         Debug.Log(characterName + " mouse down");
         foreach (GameObject level in levels)
         {

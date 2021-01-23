@@ -12,7 +12,7 @@ public class Piece : MonoBehaviour
     PolygonCollider2D collider;
     [HideInInspector]
     public List<Vector2> innerPoints;
-    float innerEpsilon = 0.1f;
+    float innerEpsilon = 0.2f;
     public DragRotation dragRotation;
     public bool isLocked = false;
     int originOrder;
@@ -60,7 +60,7 @@ public class Piece : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (Utils.Pause)
+        if (Utils.Pause || Utils.End)
         {
             isDragging = false;
             return;
@@ -76,7 +76,7 @@ public class Piece : MonoBehaviour
 
     public void OnMouseUp()
     {
-        if (Utils.Pause)
+        if (Utils.Pause || Utils.End)
         {
             isDragging = false;
             return;
@@ -151,10 +151,14 @@ public class Piece : MonoBehaviour
                     Vector2 colliderPointAfterRotation = rotateAroundVector(colliderPoint, Vector2.zero, testRotateDegree);
                     Vector2 colliderPointPosition = colliderPointAfterRotation + mousePosition;
 
-                    List<Vector2> snapPoints = new List<Vector2>(targetCollider.points);
+                    List<Vector2> snapPoints = new List<Vector2>();
 
-                    
-                    foreach (Piece otherPiece in GlobalValue.Instance.pieces)
+                    foreach (Vector2 targetPoint in targetCollider.points)
+                    {
+                        Vector2 tempClosestPoint = targetPoint + (Vector2)targetCollider.transform.position;
+                        snapPoints.Add(tempClosestPoint);
+                    }
+                        foreach (Piece otherPiece in GlobalValue.Instance.pieces)
                     {
                         if (otherPiece != this && otherPiece.isLocked)
                         {
@@ -171,7 +175,7 @@ public class Piece : MonoBehaviour
 
                     foreach (Vector2 targetPoint in snapPoints)
                     {
-                        Vector2 tempClosestPoint = targetPoint + (Vector2)targetCollider.transform.position;
+                        Vector2 tempClosestPoint = targetPoint;
                         float tempDistance = (tempClosestPoint - colliderPointPosition).SqrMagnitude();
                         if (tempDistance <= snapDistance)
                         {

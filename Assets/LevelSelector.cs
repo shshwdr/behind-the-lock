@@ -12,7 +12,7 @@ public class LevelSelector : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (Utils.Pause)
+        if (Utils.Pause || Utils.End)
         {
             return;
         }

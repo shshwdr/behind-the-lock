@@ -38,18 +38,18 @@ public class LevelController : MonoBehaviour
         {
             levelName = name;
         }
-        //if (requiredLevelList.Count > 0)
-        //{
-        //    isSeeable = false;
-        //    targetObject.SetActive(false);
-        //    splitObjects.SetActive(false);
-        //    Selector.SetActive(false);
-        //    requiredLevels = new Dictionary<GameObject, bool>();
-        //    foreach (GameObject go in requiredLevelList)
-        //    {
-        //        requiredLevels[go] = false;
-        //    }
-        //}
+        if (requiredLevelList.Count > 0)
+        {
+            isSeeable = false;
+            targetObject.SetActive(false);
+            splitObjects.SetActive(false);
+            Selector.SetActive(false);
+            requiredLevels = new Dictionary<GameObject, bool>();
+            foreach (GameObject go in requiredLevelList)
+            {
+                requiredLevels[go] = false;
+            }
+        }
         originPosition = targetObject.transform.position;
         foreach (Transform child in targetObject.transform)
         {

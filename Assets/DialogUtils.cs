@@ -19,7 +19,7 @@ public class DialogUtils : MonoBehaviour
     public void pause()
     {
         Utils.Pause = !Utils.Pause;
-        if (Utils.Pause)
+        if (Utils.Pause|| Utils.End)
         {
             Time.timeScale = 0;
         }
