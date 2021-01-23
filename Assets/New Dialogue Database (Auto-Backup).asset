@@ -273,7 +273,7 @@ MonoBehaviour:
   - id: 1
     fields:
     - title: Title
-      value: StartStart1
+      value: StartStart
       type: 0
       typeString: 
     - title: Pictures

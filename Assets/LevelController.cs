@@ -123,7 +123,17 @@ public class LevelController : MonoBehaviour
         //splitObjects.SetActive(false);
         Destroy(gameObject);
     }
+    IEnumerator LevelFinishedYield()
+    {
+        yield return new WaitForSeconds(0.2f);
+        string dialogueName = levelName + "Finished";
+        if (PixelCrushers.DialogueSystem.DialogueManager.ConversationHasValidEntry(dialogueName))
+        {
+            PixelCrushers.DialogueSystem.DialogueManager.StartConversation(dialogueName);
+        }
 
+        isRotating = true;
+    }
     void LevelFinished()
     {
         if (gameObject != Utils.currentSolvingLevel)
@@ -158,16 +168,10 @@ public class LevelController : MonoBehaviour
             }
             return;
         }
-        string dialogueName = levelName+"Finished";
-        if (PixelCrushers.DialogueSystem.DialogueManager.ConversationHasValidEntry(dialogueName))
-        {
-            PixelCrushers.DialogueSystem.DialogueManager.StartConversation(dialogueName);
-        }
         splitObjects.transform.parent = targetObject.transform;
-
         Utils.finishLevel -= LevelFinished;
-        isRotating = true;
         SFXPlayer.Instance.playSound("lock");
+        StartCoroutine(LevelFinishedYield());
     }
 
     // Update is called once per frame

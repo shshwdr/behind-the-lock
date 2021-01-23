@@ -11,12 +11,16 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //backButton.SetActive(false);
+        backButton.SetActive(false);
         DOTween.Init();
     }
 
     public void OnClickBack()
     {
+        if (Utils.Pause)
+        {
+            return;
+        }
         TargetGroupController.Instance.UpdateAllSeeableTargets();
     }
 
@@ -32,12 +36,18 @@ public class UIController : MonoBehaviour
 
     public void ToggleAutoRotation()
     {
-
+        if (Utils.Pause)
+        {
+            return;
+        }
     }
 
     public void Hint()
     {
-
+        if (Utils.Pause)
+        {
+            return;
+        }
     }
 
     // Update is called once per frame

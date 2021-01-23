@@ -86,7 +86,7 @@ public class Piece : MonoBehaviour
         isDragging = false;
         if (isLocked)
         {
-
+            Debug.Log("lock!");
             GlobalValue.Instance.CheckWin();
            StartCoroutine( CheckLockEvent());
         }
@@ -229,7 +229,7 @@ public class Piece : MonoBehaviour
                         //dir = Quaternion.Euler(new Vector3(0, 0, selectedRotation)) * dir;
                         //closestPoint = dir + pivot;
                         //transform.position = closestPoint;
-                        float moveTime = 0.4f;
+                        float moveTime = 0.2f;
                         transform.DOMove(closestPoint, moveTime);
 
                         transform.DORotate(new Vector3(0, 0, testRotateDegree), moveTime);
