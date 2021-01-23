@@ -18,6 +18,8 @@ public class Piece : MonoBehaviour
     int originOrder;
     SpriteRenderer spriteRenderer;
     float originRotation;
+    float originZIndex;
+    float originOder;
     void generateInnerPoints()
     {
         Vector2 certerPoint = Vector2.zero;
@@ -56,16 +58,36 @@ public class Piece : MonoBehaviour
         //GlobalValue.Instance.pieces.Add(this);
         spriteRenderer = GetComponent<SpriteRenderer>();
         originOrder = spriteRenderer.sortingOrder;
+        originZIndex = transform.position.z;
+        originOder = spriteRenderer.sortingOrder;
+    }
+    public void ElevateHigherOrder()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y,originZIndex+0.1f);
+        spriteRenderer.sortingOrder = spriteRenderer.sortingOrder = originOrder + 1;
+    }
+
+    public void SetBackOrder()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, originZIndex);
+        spriteRenderer.sortingOrder = spriteRenderer.sortingOrder = originOrder;
     }
 
     public void OnMouseDown()
     {
+        if (GlobalValue.Instance.lastSelected)
+        {
+
+            GlobalValue.Instance.lastSelected.transform.parent.GetComponent<Piece>().SetBackOrder();
+        }
+        ElevateHigherOrder();
+
         if (Utils.Pause || Utils.End)
         {
             isDragging = false;
             return;
         }
-        spriteRenderer.sortingOrder = originOrder + 1;
+        //spriteRenderer.sortingOrder = originOrder + 1;
         isDragging = true;
         originRotation = transform.eulerAngles.z;
         if (dragRotation)
@@ -86,7 +108,7 @@ public class Piece : MonoBehaviour
         isDragging = false;
         if (isLocked)
         {
-            Debug.Log("lock!");
+            //Debug.Log("lock!");
             GlobalValue.Instance.CheckWin();
            StartCoroutine( CheckLockEvent());
         }
@@ -208,7 +230,6 @@ public class Piece : MonoBehaviour
                         //Vector2 innerPointAfterRotation = dir + pivot;
                         if (!targetCollider.OverlapPoint(innerPointInTargetSpace))
                         {
-
                             allIn = false;
                             break;
                         }

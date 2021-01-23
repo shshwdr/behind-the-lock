@@ -20,7 +20,7 @@ public class Character : MonoBehaviour
         DOTween.Init();
         if (!noLevel && levels.Count == 0)
         {
-            Debug.LogError(characterName + " does not have levels");
+            //Debug.LogError(characterName + " does not have levels");
         }
         if (characterName.Length == 0)
         {
@@ -68,22 +68,22 @@ public class Character : MonoBehaviour
         {
             return;
         }
-        Debug.Log(characterName + " mouse down");
+        //Debug.Log(characterName + " mouse down");
         foreach (GameObject level in levels)
         {
 
             LevelController levelController = level.GetComponent<LevelController>();
             if (levelController.isSelected && !levelController.isAWall)
             {
-                Debug.Log(characterName + " check selected");
+                //Debug.Log(characterName + " check selected");
                 Collider2D targetCollider = levelController.targetObject.GetComponent<Collider2D>();
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 //worldPosition = new Vector3(worldPosition.x, worldPosition.y, targetCollider.bounds.center.z);
-                Debug.Log(worldPosition + " worldPosition");
-                Debug.Log("boundds " + targetCollider.bounds);
+                //Debug.Log(worldPosition + " worldPosition");
+                //Debug.Log("boundds " + targetCollider.bounds);
                 if (targetCollider.OverlapPoint(worldPosition))
                 {
-                    Debug.Log(characterName + " check target");
+                    //Debug.Log(characterName + " check target");
                     string dialogueName = characterName + "Click";
                     if (PixelCrushers.DialogueSystem.DialogueManager.ConversationHasValidEntry(dialogueName))
                     {

@@ -70,7 +70,6 @@ public class LevelController : MonoBehaviour
         {
             StartSolvingLevel();
 
-            Utils.UpdateSolvingLevel(gameObject);
             splitObjects.SetActive(true);
            // TargetGroupController.Instance.UpdateTarget(this);
             isSelected = true;
@@ -94,8 +93,8 @@ public class LevelController : MonoBehaviour
         {
             splitObjects.SetActive(true);
         }
-        Utils.UpdateSolvingLevel(gameObject);
-        
+        StartSolvingLevel();
+
         isSelected = true;
     }
 

@@ -62,14 +62,14 @@ public class GlobalValue : Singleton<GlobalValue>
                 res.Add(true);
             }
         }
-        Debug.Log("collider points = " + String.Join("",
-            res
-            .ConvertAll(i => i.ToString())
-            .ToArray()));
+        //Debug.Log("collider points = " + String.Join("",
+        //    res
+        //    .ConvertAll(i => i.ToString())
+        //    .ToArray()));
         if (isWin)
         {
 
-            Debug.Log("WIN");
+            //Debug.Log("WIN");
             Utils.finishLevel();
         }
     }
