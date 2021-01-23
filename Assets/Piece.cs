@@ -18,6 +18,7 @@ public class Piece : MonoBehaviour
     int originOrder;
     SpriteRenderer spriteRenderer;
     float originRotation;
+    Vector3 originPosition;
     float originZIndex;
     float originOder;
     void generateInnerPoints()
@@ -60,6 +61,11 @@ public class Piece : MonoBehaviour
         originOrder = spriteRenderer.sortingOrder;
         originZIndex = transform.position.z;
         originOder = spriteRenderer.sortingOrder;
+        originPosition = transform.position;
+    }
+    public void backOriginPosition()
+    {
+        transform.position = originPosition;
     }
     public void ElevateHigherOrder()
     {

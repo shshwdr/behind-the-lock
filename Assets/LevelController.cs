@@ -20,6 +20,7 @@ public class LevelController : MonoBehaviour
     public bool isSolved;
     public List<GameObject> requiredLevelList;
     public Dictionary<GameObject,bool> requiredLevels;
+    public int hintPiece = 2;
 
     [HideInInspector]
     public bool isSelected;
@@ -107,7 +108,29 @@ public class LevelController : MonoBehaviour
     {
         Selector.SetActive(true);
     }
+    public void GiveHint()
+    {
+        string hintString = "Piece" + hintPiece;
+        foreach (Piece piece in splitObjects.GetComponentsInChildren<Piece>())
+        {
+            if (piece.gameObject. name == hintString)
+            {
+                foreach (Transform piece2 in targetObject.GetComponentsInChildren<Transform>())
+                {
+                    if (piece2.gameObject.name == hintString)
+                    {
+                        piece.transform.position = piece2.transform.position;
+                        piece.transform.rotation = piece2.transform.rotation;
 
+                    }
+                }
+            }
+            else
+            {
+                piece.backOriginPosition();
+            }
+        }
+    }
     public void StartSolvingLevel()
     {
 

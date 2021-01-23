@@ -23,6 +23,8 @@ public class Utils : MonoBehaviour
         {
             GlobalValue.Instance.pieces.Add(piece);
         }
+        UIController.Instance.resetTime();
+
     }
 
 
@@ -50,4 +52,5 @@ public class Utils : MonoBehaviour
         //camera move
 
     }
+    
 }
