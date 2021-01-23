@@ -56,14 +56,14 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: 
-    portrait: {fileID: 0}
+    portrait: {fileID: 2800000, guid: 79a4d97781de75c4a9095412cfe94bfd, type: 3}
     spritePortrait: {fileID: 0}
     alternatePortraits: []
     spritePortraits: []
   - id: 2
     fields:
     - title: Name
-      value: NPC
+      value: NPCplayer
       type: 0
       typeString: 
     - title: Pictures
@@ -82,7 +82,7 @@ MonoBehaviour:
       value: Player
       type: 0
       typeString: 
-    portrait: {fileID: 0}
+    portrait: {fileID: 2800000, guid: 79a4d97781de75c4a9095412cfe94bfd, type: 3}
     spritePortrait: {fileID: 0}
     alternatePortraits: []
     spritePortraits: []
@@ -105,10 +105,10 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     - title: Display Name
-      value: 
+      value: Girl
       type: 0
       typeString: 
-    portrait: {fileID: 0}
+    portrait: {fileID: 2800000, guid: 847dd5fe2f4f98848937f4f47aedc40f, type: 3}
     spritePortrait: {fileID: 0}
     alternatePortraits: []
     spritePortraits: []
