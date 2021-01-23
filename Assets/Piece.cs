@@ -53,7 +53,7 @@ public class Piece : MonoBehaviour
         DOTween.Init();
         collider = GetComponent<PolygonCollider2D>();
         generateInnerPoints();
-        GlobalValue.Instance.pieces.Add(this);
+        //GlobalValue.Instance.pieces.Add(this);
         spriteRenderer = GetComponent<SpriteRenderer>();
         originOrder = spriteRenderer.sortingOrder;
     }

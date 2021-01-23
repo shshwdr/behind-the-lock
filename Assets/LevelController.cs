@@ -17,6 +17,7 @@ public class LevelController : MonoBehaviour
     public bool isSeeable;
     public GameObject Selector;
     public bool startLevel;
+    public bool isSolved;
     public List<GameObject> requiredLevelList;
     public Dictionary<GameObject,bool> requiredLevels;
 
@@ -69,6 +70,7 @@ public class LevelController : MonoBehaviour
         {
             StartSolvingLevel();
 
+            Utils.UpdateSolvingLevel(gameObject);
             splitObjects.SetActive(true);
            // TargetGroupController.Instance.UpdateTarget(this);
             isSelected = true;
@@ -88,8 +90,12 @@ public class LevelController : MonoBehaviour
     public void Select()
     {
         Selector.SetActive(false);
-        splitObjects.SetActive(true);
-        Utils.currentSolvingLevel = gameObject;
+        if (!isSolved)
+        {
+            splitObjects.SetActive(true);
+        }
+        Utils.UpdateSolvingLevel(gameObject);
+        
         isSelected = true;
     }
 
@@ -105,7 +111,8 @@ public class LevelController : MonoBehaviour
 
     public void StartSolvingLevel()
     {
-        Utils.currentSolvingLevel = gameObject;
+
+        Utils.UpdateSolvingLevel(gameObject);
         if (!solvingBefore)
         {
             string dialogueName = levelName + "Start";
@@ -127,7 +134,7 @@ public class LevelController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         string dialogueName = levelName + "Finished";
-        if (PixelCrushers.DialogueSystem.DialogueManager.ConversationHasValidEntry(dialogueName))
+        if (PixelCrushers.DialogueSystem.DialogueManager.HasConversation(dialogueName))
         {
             PixelCrushers.DialogueSystem.DialogueManager.StartConversation(dialogueName);
         }
@@ -140,7 +147,6 @@ public class LevelController : MonoBehaviour
         {
             if (!isSeeable)
             {
-
                 bool allUnlocked = true;
                 List<GameObject> test = requiredLevels.Keys.ToList();
                 foreach (GameObject requiredLevel in test)
@@ -161,7 +167,7 @@ public class LevelController : MonoBehaviour
                 {
                     isSeeable = true;
                     targetObject.SetActive(true);
-                    splitObjects.SetActive(true);
+                    //splitObjects.SetActive(true);
                     Selector.SetActive(true);
                 }
 
@@ -221,6 +227,8 @@ public class LevelController : MonoBehaviour
                 {
                     isAWall = false;
                     UpdateAsNotAWall();
+                    splitObjects.SetActive(false);
+                    isSolved = true;
                 }
                 else
                 {

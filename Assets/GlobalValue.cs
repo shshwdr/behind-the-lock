@@ -91,12 +91,14 @@ public class GlobalValue : Singleton<GlobalValue>
     // Start is called before the first frame update
     void Start()
     {
+
         //GameObject newLevel = Utils.InitLevel("Level1");
 
         //newLevel.GetComponent<LevelController>().StartSolvingLevel();
         //TargetGroupController.Instance.UpdateTargets(new List<LevelController>() { newLevel.GetComponent<LevelController>() });
 
         //Destroy(gameObject);
+
     }
 
     // Update is called once per frame

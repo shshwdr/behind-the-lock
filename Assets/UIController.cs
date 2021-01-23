@@ -11,7 +11,7 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        backButton.SetActive(false);
+        //backButton.SetActive(false);
         DOTween.Init();
     }
 

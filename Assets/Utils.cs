@@ -14,6 +14,16 @@ public class Utils : MonoBehaviour
     public static GameObject currentSolvingLevel; 
     public static bool Pause;
 
+    static public void UpdateSolvingLevel(GameObject currentLevel)
+    {
+        currentSolvingLevel = currentLevel;
+        GlobalValue.Instance.CleanPieces();
+        foreach (Piece piece in currentSolvingLevel.GetComponent<LevelController>().splitObjects.GetComponentsInChildren<Piece>())
+        {
+            GlobalValue.Instance.pieces.Add(piece);
+        }
+    }
+
 
     static public GameObject InitLevel(string levelPath)
     {

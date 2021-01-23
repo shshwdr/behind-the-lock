@@ -51,8 +51,7 @@ PrefabInstance:
         type: 3}
       propertyPath: nextLevel
       value: 
-      objectReference: {fileID: 463435393208549334, guid: a52f2af70b5e42a43be02ccaa5cc57ca,
-        type: 3}
+      objectReference: {fileID: 5722713927076820857}
     - target: {fileID: 681217899461737504, guid: 077262b3704440247823bba2d71c9cae,
         type: 3}
       propertyPath: startLevel
@@ -500,3 +499,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077262b3704440247823bba2d71c9cae, type: 3}
+--- !u!1 &5722713927076820857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 681217899461737510, guid: 077262b3704440247823bba2d71c9cae,
+    type: 3}
+  m_PrefabInstance: {fileID: 5052763822777289567}
+  m_PrefabAsset: {fileID: 0}

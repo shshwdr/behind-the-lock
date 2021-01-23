@@ -1865,7 +1865,7 @@ MonoBehaviour:
     - id: 2
       fields:
       - title: Title
-        value: New Dialogue Entry
+        value: 
         type: 0
         typeString: 
       - title: Pictures
@@ -1889,7 +1889,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Something walked by!
+        value: Something run by!
         type: 0
         typeString: 
       - title: Parenthetical
@@ -7417,8 +7417,8 @@ MonoBehaviour:
         y: 570.0492
         width: 160
         height: 30
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.7000001
+    canvasScrollPosition: {x: 120.9404, y: 575.64246}
+    canvasZoom: 0.55000025
   - id: 7
     fields:
     - title: Title
@@ -7900,7 +7900,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 1
+        value: 2
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -7983,11 +7983,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 1
+        value: 2
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 3
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -10056,12 +10056,12 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1014.5447
-        y: 34.54547
+        x: 1050.9083
+        y: 179.18172
         width: 160
         height: 30
-    canvasScrollPosition: {x: 9.090958, y: 0}
-    canvasZoom: 0.55000037
+    canvasScrollPosition: {x: 8.16333, y: 0}
+    canvasZoom: 0.4900004
   - id: 10
     fields:
     - title: Title
